@@ -26,3 +26,4 @@
         'static/description/QR_ready.png'
     ]
 }
+
