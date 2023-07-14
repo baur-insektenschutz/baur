@@ -11,7 +11,9 @@
     'images': '',
     'depends': ['sale_management'],
     'data': [
+        'security/ir.model.access.csv',
         'views/sale.xml',
+        'report/sale_report_views.xml',
     ],
     'installable': True,
 }

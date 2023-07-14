@@ -193,3 +193,60 @@ class AccountPaymentTermLine(models.Model):
             due_date += relativedelta(days=self.days_after)
         return due_date
 
+
+class TextBlocks(models.Model):
+    _name = 'text.blocks'
+
+    name = fields.Char('Text-block Name')
+    text_block = fields.Html('Text-block Text')
+
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    termin = fields.Boolean(string="Termin")
+    abholung = fields.Boolean(string="Abholung")
+    preise_sonderfarben = fields.Boolean(string="Preise Sonderfarben")
+    preise_exkl_montage = fields.Boolean(string="Preise exkl. Montage")
+    rabatt_5 = fields.Boolean(string="Rabatt 5%")
+    rabatt_10 = fields.Boolean(string="Rabatt 10%")
+    rabatt_40 = fields.Boolean(string="Rabatt 40%")
+    rabatt_u = fields.Boolean(string="Rabatt U")
+    rabattierung = fields.Boolean(string="Rabattierung")
+    garantie = fields.Boolean(string="Garantie")
+    garantie_wiederverkaufer = fields.Boolean(string="Garantie Wiederverkäufer")
+    freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
+    freier_text = fields.Html('Freier Text')
+
+    @api.onchange('freier_text_block_id')
+    def onchange_freier_text_block_id(self):
+        if self.freier_text_block_id:
+            self.freier_text = self.freier_text_block_id.text_block
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    @api.onchange('product_id')
+    def product_id_change(self):
+        res = super(SaleOrderLine, self).product_id_change()
+        if self.product_id:
+            if self.product_id.farbe:
+                self.x_studio_farbe = self.product_id.farbe
+            if self.product_id.grosse:
+                self.x_studio_groesse = self.product_id.grosse
+        return res
+
+
+class AccountMove(models.Model):
+    _inherit = "account.move"
+
+    garantie = fields.Boolean(string="Garantie")
+    garantie_wiederverkaufer = fields.Boolean(string="Garantie Wiederverkäufer")
+    freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
+    freier_text = fields.Html('Freier Text')
+
+    @api.onchange('freier_text_block_id')
+    def onchange_freier_text_block_id(self):
+        if self.freier_text_block_id:
+            self.freier_text = self.freier_text_block_id.text_block

@@ -28,7 +28,74 @@
             </xpath>
         </field>
     </record>
-    <record id="baur_account_move_form" model="ir.ui.view">
+    <record id="base_baur_view_order_form" model="ir.ui.view">
+        <field name="name">base.baur.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[last()]" position="after">
+                <page name="page_konditionen" string="Baur Konditionen">
+                    <group>
+                        <group>
+                            <field name="x_studio_lieferfrist" string="Lieferfrist"/>
+                            <field name="termin" string="Termin"/>
+                            <field name="abholung" string="Abholung"/>
+                            <field name="preise_sonderfarben" string="Preise Sonderfarben"/>
+                            <field name="x_studio_preise_inkl_montage" string="Preise inkl. Montage"/>
+                            <field name="preise_exkl_montage" string="Preise exkl. Montage"/>
+                        </group>
+                        <group>
+                            <field name="rabatt_5" string="Rabatt 5%"/>
+                            <field name="rabatt_10" string="Rabatt 10%"/>
+                            <field name="rabatt_40" string="Rabatt 40%"/>
+                            <field name="rabatt_u" string="Rabatt U"/>
+                            <field name="rabattierung" string="Rabattierung"/>
+                            <field name="garantie" string="Garantie"/>
+                            <field name="garantie_wiederverkaufer" string="Garantie Wiederverkäufer"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="freier_text_block_id" string="Freier Text Block"/>
+                        <field name="freier_text" string="Freier Text"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='x_studio_lieferfrist']" position="before">
+                <xpath expr="//field[@name='payment_term_id']" position="move"/>
+            </xpath>
+        </field>
+    </record>
+    <!--Text block view starts here-->
+    <record id="base_baur_view_text_block_form" model="ir.ui.view">
+        <field name="name">base.baur.view.text.block.form</field>
+        <field name="model">text.blocks</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="text_block"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="base_baur_view_text_block_tree" model="ir.ui.view">
+        <field name="name">base.baur.view.text.block.form</field>
+        <field name="model">text.blocks</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="base_baur_view_text_block_action" model="ir.actions.act_window">
+        <field name="name">Free Text Blocks</field>
+        <field name="res_model">text.blocks</field>
+        <field name='view_mode'>tree,form</field>
+    </record>
+    <menuitem id="config_text_blocks_menu" name="Free Text Blocks" parent="sale.menu_sales_config" action="base_baur_view_text_block_action" sequence="5"/>
+    <!-- <record id="baur_account_move_form" model="ir.ui.view">
         <field name="name">account.move.baur</field>
         <field name="model">account.move</field>
         <field name="inherit_id" ref="account.view_move_form" />
@@ -37,5 +104,5 @@
                  <attribute name='context'>{'example_date': invoice_date, 'invoice_id': id}</attribute>
             </xpath>
         </field>
-    </record>
+    </record> -->
 </odoo>
