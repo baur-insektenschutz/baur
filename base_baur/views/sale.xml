@@ -28,6 +28,41 @@
             </xpath>
         </field>
     </record>
+    <record id="base_baur_sale_order_template_view_form" model="ir.ui.view">
+        <field name="name">base.baur.sale.order.template.view.form</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+        <field name="model">sale.order.template</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="page_konditionen" string="Baur Konditionen">
+                    <group>
+                        <group>
+                            <field name="x_studio_lieferfrist" string="Lieferfrist"/>
+                            <field name="termin" string="Termin"/>
+                            <field name="abholung" string="Abholung"/>
+                            <field name="preise_sonderfarben" string="Preise Sonderfarben"/>
+                            <field name="x_studio_preise_inkl_montage" string="Preise inkl. Montage"/>
+                            <field name="preise_exkl_montage" string="Preise exkl. Montage"/>
+                        </group>
+                        <group>
+                            <field name="rabatt_5" string="Rabatt 5%"/>
+                            <field name="rabatt_10" string="Rabatt 10%"/>
+                            <field name="rabatt_40" string="Rabatt 40%"/>
+                            <field name="rabatt_u" string="Rabatt U"/>
+                            <field name="rabattierung" string="Rabattierung"/>
+                            <field name="garantie" string="Garantie"/>
+                            <field name="garantie_wiederverkaufer" string="Garantie Wiederverkäufer"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="freier_text_block_id" string="Freier Text Block" no_create_edit="1" />
+                        <field name="freier_text" string="Freier Text"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
     <record id="base_baur_view_order_form" model="ir.ui.view">
         <field name="name">base.baur.view.order.form</field>
         <field name="model">sale.order</field>

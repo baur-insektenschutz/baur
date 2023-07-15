@@ -12,7 +12,9 @@
     'depends': ['sale_management'],
     'data': [
         'security/ir.model.access.csv',
+        'views/account_move.xml',
         'views/sale.xml',
+        'report/invoice_report_views.xml',
         'report/sale_report_views.xml',
     ],
     'installable': True,

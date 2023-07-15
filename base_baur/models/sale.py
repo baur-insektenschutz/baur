@@ -201,6 +201,43 @@ class TextBlocks(models.Model):
     text_block = fields.Html('Text-block Text')
 
 
+class SaleOrderTemplate(models.Model):
+    _inherit = "sale.order.template"
+
+    x_studio_lieferfrist = fields.Selection(
+        [
+            ('ca. 6 Wochen', 'ca. 6 Wochen'),
+            ('ca. 8 Wochen', 'ca. 8 Wochen'),
+            ('6 - 8 Wochen', '6 - 8 Wochen'),
+            ('8 - 10 Wochen', '8 - 10 Wochen'),
+            ('4 Wochen', '4 Wochen'),
+            ('ca. 4 Wochen, wird abgeholt in Uttigen', 'ca. 4 Wochen, wird abgeholt in Uttigen'),
+            ('ca. 4 Wochen, wird geliefert', 'ca. 4 Wochen, wird geliefert'),
+            ('ca. 3 bis 4 Wochen', 'ca. 3 bis 4 Wochen'),
+            ('4 - 6 Wochen', '4 - 6 Wochen'),
+        ]
+    )
+    x_studio_preise_inkl_montage = fields.Boolean(string="Preise inkl. Montage")
+    termin = fields.Boolean(string="Termin")
+    abholung = fields.Boolean(string="Abholung")
+    preise_sonderfarben = fields.Boolean(string="Preise Sonderfarben")
+    preise_exkl_montage = fields.Boolean(string="Preise exkl. Montage")
+    rabatt_5 = fields.Boolean(string="Rabatt 5%")
+    rabatt_10 = fields.Boolean(string="Rabatt 10%")
+    rabatt_40 = fields.Boolean(string="Rabatt 40%")
+    rabatt_u = fields.Boolean(string="Rabatt U")
+    rabattierung = fields.Boolean(string="Rabattierung")
+    garantie = fields.Boolean(string="Garantie")
+    garantie_wiederverkaufer = fields.Boolean(string="Garantie Wiederverkäufer")
+    freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
+    freier_text = fields.Html('Freier Text')
+
+    @api.onchange('freier_text_block_id')
+    def onchange_freier_text_block_id(self):
+        if self.freier_text_block_id:
+            self.freier_text = self.freier_text_block_id.text_block
+
+
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
@@ -222,6 +259,43 @@ class SaleOrder(models.Model):
     def onchange_freier_text_block_id(self):
         if self.freier_text_block_id:
             self.freier_text = self.freier_text_block_id.text_block
+
+    @api.onchange('sale_order_template_id')
+    def onchange_sale_order_template_id(self):
+        res = super(SaleOrder, self).onchange_sale_order_template_id()
+        if self.sale_order_template_id:
+            template = self.sale_order_template_id
+            if template.x_studio_lieferfrist:
+                self.x_studio_lieferfrist = template.x_studio_lieferfrist
+            if template.x_studio_preise_inkl_montage:
+                self.x_studio_preise_inkl_montage = template.x_studio_preise_inkl_montage
+            if template.termin:
+                self.termin = template.termin
+            if template.abholung:
+                self.abholung = template.abholung
+            if template.preise_sonderfarben:
+                self.preise_sonderfarben = template.preise_sonderfarben
+            if template.preise_exkl_montage:
+                self.preise_exkl_montage = template.preise_exkl_montage
+            if template.rabatt_5:
+                self.rabatt_5 = template.rabatt_5
+            if template.rabatt_10:
+                self.rabatt_10 = template.rabatt_10
+            if template.rabatt_40:
+                self.rabatt_40 = template.rabatt_40
+            if template.rabatt_u:
+                self.rabatt_u = template.rabatt_u
+            if template.rabattierung:
+                self.rabattierung = template.rabattierung
+            if template.garantie:
+                self.garantie = template.garantie
+            if template.garantie_wiederverkaufer:
+                self.garantie_wiederverkaufer = template.garantie_wiederverkaufer
+            if template.freier_text_block_id:
+                self.freier_text_block_id = template.freier_text_block_id
+            if template.freier_text:
+                self.freier_text = template.freier_text
+        return res
 
 
 class SaleOrderLine(models.Model):
