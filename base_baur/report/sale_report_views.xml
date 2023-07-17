@@ -93,6 +93,17 @@
                                 </td>
                             </tr>
                         </table>
+                    </div>
+                    <div style="width:48%">
+                        <table class="table table-sm">
+                            <!-- Tax totals -->
+                            <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)" />
+                            <t t-call="account.document_tax_totals" />
+                        </table>
+                    </div>
+                </div>
+                <div id="baur_konditionen" class="row" name="baur_konditionen">
+                    <div class="" style="width:50%;font-family: Roboto; font-size: 13.3333px;">
                         <table class="table table-borderless table-sm" t-attf-style="margin-top: #{18 if doc.order_line and not doc.payment_term_id else 0}%" t-if="doc.validity_date or doc.preise_sonderfarben or doc.x_studio_preise_inkl_montage or doc.preise_exkl_montage">
                             <tr style="line-height:1.5em;" t-if="doc.validity_date">
                                 <td width="21%" class="p-0">
@@ -221,13 +232,8 @@
                             </div>
                         </table>
                     </div>
-                    <div style="width:50%">
-                        <table class="table table-sm">
-                            <!-- Tax totals -->
-                            <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)" />
-                            <t t-call="account.document_tax_totals" />
-                        </table>
-                    </div>
+                     <div style="width:50%">
+                     </div>
                 </div>
             </xpath>
             <xpath expr="//table[hasclass('o_main_table')]//thead/tr" position="attributes">
