@@ -3,9 +3,9 @@
 	<record id="sale_order_form_view_inh" model="ir.ui.view">
 		<field name="name">sale.order.form.view.inh</field>
 		<field name="model">sale.order</field>
-		<field name="inherit_id" ref="ons_productivity_qrcode_scan.view_order_form_cust" />
+		<field name="inherit_id" ref="sale.view_order_form" />
 		<field name="arch" type="xml">
-			<xpath expr="//field[@name='execution']" position="after">
+			<xpath expr="//field[@name='currency_id']" position="before">
 				<field name="vermittelt_durch_id" domain="[('vermittelt_durch', '=', True)]" />
 			</xpath>
 		</field>
@@ -40,7 +40,7 @@
 		<field name="arch" type="xml">
 			<xpath expr="//filter[@name='filter_create_date']" position="after">
 				<separator/>
-				<filter string="Vermittelt Durch" name="vermittelt_durch" domain="[('vermittelt_durch_id','!=', False)]"/>
+				<filter string="(sd) vermittelt durch" name="vermittelt_durch" domain="[('vermittelt_durch_id','!=', False)]"/>
 			</xpath>
 		</field>
 	</record>
@@ -52,7 +52,7 @@
 		<field name="arch" type="xml">
 			<xpath expr="//filter[@name='cancel']" position="after">
 				<separator/>
-				<filter string="Vermittelt Durch" name="vermittelt_durch" domain="[('vermittelt_durch_id','!=', False)]"/>
+				<filter string="(sd) vermittelt durch" name="vermittelt_durch" domain="[('vermittelt_durch_id','!=', False)]"/>
 			</xpath>
 		</field>
 	</record>
@@ -64,7 +64,7 @@
 		<field name="arch" type="xml">
 			<xpath expr="//filter[@name='inactive']" position="after">
 				<separator/>
-				<filter string="Vermittelt Durch" name="vermittelt_durch" domain="[('vermittelt_durch','!=', False)]"/>
+				<filter string="(sd) Provisionsberechtigt" name="vermittelt_durch" domain="[('vermittelt_durch','!=', False)]"/>
 			</xpath>
  		</field>
 	</record>

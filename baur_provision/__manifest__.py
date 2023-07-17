@@ -10,7 +10,7 @@
     'author': 'Kanak Infosystems LLP.',
     'website': 'https://www.kanakinfosystems.com',
     'images': '',
-    'depends': ['sale_management', 'ons_productivity_qrcode_scan', 'account'],
+    'depends': ['sale_management', 'account'],
     'data': [
         'views/sale.xml',
         'report/sale_report_views.xml',

@@ -7,7 +7,7 @@ from odoo import fields, models
 class SaleOrder(models.Model):
     _inherit = "sale.order"
 
-    vermittelt_durch_id = fields.Many2one('res.partner', string="Vermittelt Durch")
+    vermittelt_durch_id = fields.Many2one('res.partner', string="(sd) vermittelt durch")
 
     def _create_invoices(self, grouped=False, final=False, date=None):
         res = super(SaleOrder, self)._create_invoices(grouped=grouped, final=final, date=date)
@@ -18,7 +18,7 @@ class SaleOrder(models.Model):
 class AccountMove(models.Model):
     _inherit = "account.move"
 
-    vermittelt_durch_id = fields.Many2one('res.partner', string="Vermittelt Durch")
+    vermittelt_durch_id = fields.Many2one('res.partner', string="(sd) vermittelt durch")
 
 
 class SaleAdvancePaymentInv(models.TransientModel):
@@ -33,4 +33,4 @@ class SaleAdvancePaymentInv(models.TransientModel):
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
-    vermittelt_durch = fields.Boolean(string="Vermittelt Durch")
+    vermittelt_durch = fields.Boolean(string="(sd) Provisionsberechtigt")
