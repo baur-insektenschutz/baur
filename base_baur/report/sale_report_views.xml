@@ -3,12 +3,12 @@
     <data>
         <template id="base_baur_report_saleorder_document" inherit_id="sale.report_saleorder_document">
             <xpath expr="//t[@t-set='address']" position="before">
-                <div class="row address">
-                    <div class="col-4"><img class="img-fluid" src="/web/image/644-2ae27e1e/baur_logo_sz.png" style="width:150px;margin-left:80px" /></div>
-                    <div class="col-4"><span>
-                            <p>BAUR Insektenschutz AG<br />Eichenweg 11<br />3628 Uttigen<br /></p>
+                <div class="row address" style="margin-top:-40px;">
+                    <div class="col-4"><img class="img-fluid" src="/web/image/644-2ae27e1e/baur_logo_sz.png" style="width:150px;" /></div>
+                    <div class="col-4" style="line-height: 1.2;"><span>
+                            <p><span style="font-weight:bold;">BAUR Insektenschutz AG</span><br />Eichenweg 11<br />3628 Uttigen<br /></p>
                         </span></div>
-                    <div class="col-4">
+                    <div class="col-4" style="line-height: 1.2;">
                         <p>Tel.         033 345 07 77<br />Mail       info@baur-uttigen.ch<br />Web      www.baur-uttigen.ch<br />MWST  CHE-279.642.932</p>
                     </div>
                 </div>
@@ -80,143 +80,143 @@
                     </div>
                 </div>
             </xpath>
-            <xpath expr="//span[@t-field='doc.payment_term_id.note']" position="replace"/>
+            <xpath expr="//span[@t-field='doc.payment_term_id.note']" position="replace" />
             <xpath expr="//div[@name='so_total_summary']//div[@id='total']" position="replace">
                 <div id="total" class="row" name="total">
                     <div class="" style="width:50%;font-family: Roboto; font-size: 13.3333px;">
-                        <table class="table table-borderless table-sm">
+                        <table class="table table-borderless table-sm" t-if="doc.payment_term_id">
                             <tr>
                                 <td class="pl-0">
-                                    <p t-if="doc.payment_term_id" class="mb-5" style="margin-top: 18%">
+                                    <p t-if="doc.payment_term_id" t-attf-style="margin-top: #{18 if doc.order_line else 0}%">
                                         <span>Zahlung </span><span t-field="doc.payment_term_id" />
                                     </p>
                                 </td>
                             </tr>
                         </table>
-                        <table class="table table-borderless table-sm">
+                        <table class="table table-borderless table-sm" t-attf-style="margin-top: #{18 if doc.order_line and not doc.payment_term_id else 0}%" t-if="doc.validity_date or doc.preise_sonderfarben or doc.x_studio_preise_inkl_montage or doc.preise_exkl_montage">
                             <tr style="line-height:1.5em;" t-if="doc.validity_date">
                                 <td width="21%" class="p-0">
-                                    <span class="mb-1">Angebots<br/>gültigkeit:</span>
+                                    <span class="mb-1">Angebots-<br />gültigkeit:</span>
                                 </td>
                                 <td width="79%" class="p-0">
-                                	<p style="margin-top:1.5em;" class="mb-1"><span t-esc="doc.validity_date" t-options="{&quot;widget&quot;: &quot;date&quot;}" /> (exkl. Sonderfarben)</p>
+                                    <p style="margin-top:1.5em;" class="mb-1"><span t-esc="doc.validity_date" t-options="{&quot;widget&quot;: &quot;date&quot;}" /> (exkl. Sonderfarben)</p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.preise_sonderfarben">
                                 <td width="21%" class="p-0">
-                                	<p class="mb-1"><span>Preise<br/>Sonderfarben:</span></p>
+                                    <p class="mb-1"><span>Preise<br />Sonderfarben:</span></p>
                                 </td>
                                 <td width="79%" class="p-0">
-                                	<p  style="margin-top:1.5em;" class="mb-1"><span> gültig 4 Wochen</span></p>
+                                    <p style="margin-top:1.5em;" class="mb-1"><span> gültig 4 Wochen</span></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1em;" t-if="doc.x_studio_preise_inkl_montage">
-                            	<td width="21%" class="p-0">
-                            		<p class="mb-1"><span>Preise:</span></p>
-                            	</td>
-                            	<td width="79%" class="p-0">
-                            		<p class="mb-1" ><span> inkl. Montage</span></p>
-                            	</td>
+                                <td width="21%" class="p-0">
+                                    <p class="mb-1"><span>Preise:</span></p>
+                                </td>
+                                <td width="79%" class="p-0">
+                                    <p class="mb-1"><span> inkl. Montage</span></p>
+                                </td>
                             </tr>
                             <tr style="line-height:1em;" t-if="doc.preise_exkl_montage">
-                            	<td width="21%" class="p-0">
-                            		<p class="mb-1"><span>Preise:</span></p>
-                            	</td>
-                            	<td width="79%" class="p-0">
-                            		<p class="mb-1" ><span> exkl. Montage</span></p>
-                            	</td>
+                                <td width="21%" class="p-0">
+                                    <p class="mb-1"><span>Preise:</span></p>
+                                </td>
+                                <td width="79%" class="p-0">
+                                    <p class="mb-1"><span> exkl. Montage</span></p>
+                                </td>
                             </tr>
                         </table>
-                        <table class="table table-borderless table-sm" style="line-height:0em;">
+                        <table class="table table-borderless table-sm" style="line-height:0em;" t-if="doc.x_studio_lieferfrist or doc.termin or doc.abholung">
                             <tr style="line-height:0em;" t-if="doc.x_studio_lieferfrist">
                                 <td class="p-0" width="21%">
-                                	<p><span>Lieferfrist:</span></p>
+                                    <p><span>Lieferfrist:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                	<p><span t-esc="doc.x_studio_lieferfrist"/></p>
+                                    <p><span t-esc="doc.x_studio_lieferfrist" /></p>
                                 </td>
                             </tr>
                             <tr style="line-height:0em;" t-if="doc.termin">
-                            	<td class="p-0" width="21%">
-                            		<p><span>Termin:</span></p>
-                            	</td>
-                            	<td class="p-0" width="79%">
-                            		<p><span> nach Vereinbarung</span></p>
-                            	</td>
+                                <td class="p-0" width="21%">
+                                    <p><span>Termin:</span></p>
+                                </td>
+                                <td class="p-0" width="79%">
+                                    <p><span> nach Vereinbarung</span></p>
+                                </td>
                             </tr>
                             <tr style="line-height:0em;" t-if="doc.abholung">
-                            	<td class="p-0" width="21%">
-                            		<p><span>Abholung:</span></p>
-                            	</td>
-                            	<td class="p-0" width="79%">
-                            		<p><span> ab Werkstatt, Uttigen</span></p>
-                            	</td>
+                                <td class="p-0" width="21%">
+                                    <p><span>Abholung:</span></p>
+                                </td>
+                                <td class="p-0" width="79%">
+                                    <p><span> ab Werkstatt, Uttigen</span></p>
+                                </td>
                             </tr>
                         </table>
-                        <table class="table table-borderless table-sm">
+                        <table class="table table-borderless table-sm" t-if="doc.rabatt_5 or doc.rabatt_10 or doc.rabatt_40 or doc.rabatt_u or doc.rabattierung">
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_5">
                                 <td class="p-0" width="21%">
                                     <p class="mb-1"><span>Rabatt:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1" ><span> 5% ab einem Bestellwert von CHF 2'000.- exkl. Sonderfarben und exkl. Reparaturen</span></p>
+                                    <p class="mb-1"><span> 5% ab einem Bestellwert von CHF 2'000.- exkl. Sonderfarben und exkl. Reparaturen</span></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_10">
-                            	<td class="p-0" width="21%">
-                            		<p class="mb-1"><span>Rabatt:</span></p>
-                            	</td>
-                            	<td class="p-0" width="79%">
-                            		<p class="mb-1"><span> 10% ab einem Bestellwert von CHF 3'000.- exkl. Sonderfarben und exkl. Reparaturen</span></p>
-                            	</td>
+                                <td class="p-0" width="21%">
+                                    <p class="mb-1"><span>Rabatt:</span></p>
+                                </td>
+                                <td class="p-0" width="79%">
+                                    <p class="mb-1"><span> 10% ab einem Bestellwert von CHF 3'000.- exkl. Sonderfarben und exkl. Reparaturen</span></p>
+                                </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_40">
-                            	<td class="p-0" width="21%">
-                            		<p class="mb-1"><span>Rabatt:</span></p>
-                            	</td>
-                            	<td class="p-0" width="79%">
-                            		<p class="mb-1"><span> 40% Wiederverkaufsrabatt exkl. Sonderfarben und exkl. Montage/Reparatur</span></p>
-                            	</td>
+                                <td class="p-0" width="21%">
+                                    <p class="mb-1"><span>Rabatt:</span></p>
+                                </td>
+                                <td class="p-0" width="79%">
+                                    <p class="mb-1"><span> 40% Wiederverkaufsrabatt exkl. Sonderfarben und exkl. Montage/Reparatur</span></p>
+                                </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_u">
-                            	<td class="p-0" width="21%">
-                            		<p class="mb-1"><span>Rabatt:</span></p>
-                            	</td>
-                            	<td class="p-0" width="79%">
-                            		<p class="mb-1"><span> 5% Uttiger Rabatt bereits in Abzug gebracht</span></p>
-                            	</td>
+                                <td class="p-0" width="21%">
+                                    <p class="mb-1"><span>Rabatt:</span></p>
+                                </td>
+                                <td class="p-0" width="79%">
+                                    <p class="mb-1"><span> 5% Uttiger Rabatt bereits in Abzug gebracht</span></p>
+                                </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabattierung">
-                            	<td class="p-0" width="21%">
-                            		<p class="mb-1"><span>Rabatt:</span></p>
-                            	</td>
-                            	<td class="p-0" width="79%">
-                            		<p class="mb-1"><span> Alle Rabatte exkl. Farbzuschläge und exkl. Reparaur</span></p>
-                            	</td>
+                                <td class="p-0" width="21%">
+                                    <p class="mb-1"><span>Rabatt:</span></p>
+                                </td>
+                                <td class="p-0" width="79%">
+                                    <p class="mb-1"><span> Alle Rabatte exkl. Farbzuschläge und exkl. Reparaur</span></p>
+                                </td>
                             </tr>
                         </table>
-                        <table class="table table-borderless table-sm" style="line-height:1.5em;">
-                        	<tr style="line-height:1.5em;" t-if="doc.garantie">
-                        		<td class="p-0" width="21%">
-                        			<p class="mb-1"><span>Garantie:</span></p>
-                        		</td>
-                        		<td class="p-0" width="79%">
-                        			<p class="mb-1"><span> 3 Jahre Garantie auf Material (exkl. auf Gewebe)</span></p>
-                        		</td>
-                        	</tr>
-                        	<tr style="line-height:1.5em;" t-if="doc.garantie_wiederverkaufer">
-                        		<td class="p-0" width="21%">
-                        			<p class="mb-1"><span>Garantie:</span></p>
-                        		</td>
-                        		<td class="p-0" width="79%">
-                        			<p class="mb-1"><span> 3 Jahre Garantie auf Produkte (exkl. auf Gewebe<br/>Schäden durch unsachgemässe Montage sind nicht garantieberechtigt</span></p>
-                        		</td>
-                        	</tr>
+                        <table class="table table-borderless table-sm" style="line-height:1.5em;" t-if="doc.garantie or doc.garantie_wiederverkaufer">
+                            <tr style="line-height:1.5em;" t-if="doc.garantie">
+                                <td class="p-0" width="21%">
+                                    <p class="mb-1"><span>Garantie:</span></p>
+                                </td>
+                                <td class="p-0" width="79%">
+                                    <p class="mb-1"><span> 3 Jahre Garantie auf Material (exkl. auf Gewebe)</span></p>
+                                </td>
+                            </tr>
+                            <tr style="line-height:1.5em;" t-if="doc.garantie_wiederverkaufer">
+                                <td class="p-0" width="21%">
+                                    <p class="mb-1"><span>Garantie:</span></p>
+                                </td>
+                                <td class="p-0" width="79%">
+                                    <span class="mb-1"><span> 3 Jahre Garantie auf Produkte (exkl. auf Gewebe<br />Schäden durch unsachgemässe Montage sind nicht garantieberechtigt</span></span>
+                                </td>
+                            </tr>
                         </table>
-                        <table class="table table-borderless table-sm" style="line-height:1.5em;">
+                        <table class="table table-borderless table-sm" style="line-height:1.5em;" t-if="doc.freier_text">
                             <div class="row mb-4" t-if="doc.freier_text">
                                 <div class="col">
-                                   <t t-raw="doc.freier_text"/>
+                                    <t t-raw="doc.freier_text" />
                                 </div>
                             </div>
                         </table>
@@ -230,12 +230,41 @@
                     </div>
                 </div>
             </xpath>
-            <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_description']" position="before">
-                <th name="th_art_no" class="text-left"><span>Art-No.</span></th>
+            <xpath expr="//table[hasclass('o_main_table')]//thead/tr" position="attributes">
+                <attribute name="class">small</attribute>
             </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_quantity']" position="attributes">
+                <attribute name="width">5%</attribute>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_priceunit']" position="attributes">
+                <attribute name="class">text-center</attribute>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_taxes']" position="replace"/>
+            <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_description']" position="before">
+                <th name="th_art_no" class="text-left" width="10%"><span>Art-No.</span></th>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_quantity']" position="before">
+                <th name="th_profilfarbe" class="text-left" width="10%"><span>Profilfarbe</span></th>
+                <th name="th_grosse" class="text-left" width="10%"><span>Grösse</span></th>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_taxes']" position="replace"/>
+            <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_priceunit']" position="attributes">
+                <attribute name="class">text-center</attribute>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_quantity']" position="before">
+                <td name="td_profilfarbe" class="text-left"><span t-field="line.x_studio_farbe"/></td>
+                <td name="td_grosse" width="10%" class="text-left"><span t-field="line.x_studio_groesse"/></td>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_quantity']//span[@t-field='line.product_uom']" position="replace"/>
             <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_name']" position="replace">
-               <td name="td_name"><span t-if="line.product_id" t-field="line.product_id.default_code"/></td>
-               <td name="td_name"><span t-if="line.product_id" t-field="line.product_id.name"/></td>
+                <td name="td_art_no"><span t-if="line.product_id" t-field="line.product_id.default_code" /></td>
+                <td name="td_name"><span t-if="line.product_id" t-field="line.product_id.name" /></td>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_description']" position="attributes">
+                <attribute name="width">45%</attribute>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_name']" position="attributes">
+                <attribute name="width">45%</attribute>
             </xpath>
         </template>
     </data>
