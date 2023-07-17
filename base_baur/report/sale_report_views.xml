@@ -230,6 +230,13 @@
                     </div>
                 </div>
             </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_description']" position="before">
+                <th name="th_art_no" class="text-left"><span>Art-No.</span></th>
+            </xpath>
+            <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_name']" position="replace">
+               <td name="td_name"><span t-if="line.product_id" t-field="line.product_id.default_code"/></td>
+               <td name="td_name"><span t-if="line.product_id" t-field="line.product_id.name"/></td>
+            </xpath>
         </template>
     </data>
 </odoo>

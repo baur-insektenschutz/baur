@@ -126,5 +126,12 @@
                     </div>
                 </div>
             </xpath>
+            <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_description']" position="before">
+            	<th name="th_art_no" class="text-left"><span>Art-No.</span></th>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']//t[@name='account_invoice_line_accountable']//td[@name='account_invoice_line_name']" position="replace">
+            	<td name="account_invoice_line_art_no"><span t-if="line.product_id" t-field="line.product_id.default_code" t-options="{'widget': 'text'}"/></td>
+            	<td name="account_invoice_line_name"><span t-if="line.product_id" t-field="line.product_id.name" t-options="{'widget': 'text'}"/></td>
+            </xpath>
  	</template>
 </odoo>

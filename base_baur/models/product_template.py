@@ -4,7 +4,7 @@ from odoo import fields, models, api
 
 
 class ProductTemplate(models.Model):
-    _inherit = "product_template"
+    _inherit = "product.template"
 
     farbe = fields.Char(string="Farbe")
     grosse = fields.Char(string="Grosse")
