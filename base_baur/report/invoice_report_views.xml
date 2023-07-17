@@ -2,12 +2,12 @@
 <odoo>
     <template id="base_baur_report_invoice_document_inherit" inherit_id="account.report_invoice_document">
         <xpath expr="//t[@t-set='address']" position="before">
-                <div class="row address">
-                    <div class="col-4"><img class="img-fluid" src="/web/image/644-2ae27e1e/baur_logo_sz.png" style="width:150px;margin-left:80px" /></div>
-                    <div class="col-4"><span>
+                <div class="row address" style="margin-top:-40px;">
+                    <div class="col-4"><img class="img-fluid" src="/web/image/644-2ae27e1e/baur_logo_sz.png" style="width:150px;" /></div>
+                    <div class="col-4" style="line-height: 1.2;"><span>
                             <p>BAUR Insektenschutz AG<br />Eichenweg 11<br />3628 Uttigen<br /></p>
                         </span></div>
-                    <div class="col-4">
+                    <div class="col-4" style="line-height: 1.2;">
                         <p>Tel.         033 345 07 77<br />Mail       info@baur-uttigen.ch<br />Web      www.baur-uttigen.ch<br />MWST  CHE-279.642.932</p>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
             <xpath expr="//div[@class='clearfix']//div[@id='total']" position="replace">
                 <div id="total" class="row" name="total">
                     <div class="" style="width:50%;font-family: Roboto; font-size: 13.3333px;">
-                        <table class="table table-borderless table-sm">
+                        <table class="table table-borderless table-sm" t-attf-style="margin-top: #{17 if o.invoice_line_ids else 0}%">
                             <tr>
                                 <td class="pl-0">
                                     <p t-if="o.invoice_payment_term_id" class="mb-5" style="margin-top: 18%">
@@ -66,7 +66,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <table class="table table-borderless table-sm" style="line-height:1.5em;">
+                        <table class="table table-borderless table-sm" t-attf-style="margin-top: #{17 if o.invoice_line_ids and not o.invoice_payment_term_id else 0}%;line-height:1.5em;">
                         	<tr style="line-height:1.5em;" t-if="o.garantie">
                         		<td class="p-0" width="15%">
                         			<p><span>Garantie:</span></p>
@@ -92,7 +92,7 @@
                             </div>
                         </table>
                     </div>
-                    <div style="width:50%">
+                    <div style="width:48%">
                         <table class="table table-sm" style="page-break-inside: avoid;">
                             <!--Tax totals-->
                             <t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>
@@ -126,12 +126,41 @@
                     </div>
                 </div>
             </xpath>
+            <xpath expr="//table[@name='invoice_line_table']//thead/tr" position="attributes">
+                <attribute name="class">small</attribute>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']//thead/tr//th[@name='th_quantity']" position="attributes">
+                <attribute name="width">5%</attribute>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']//thead/tr//th[@name='th_priceunit']" position="attributes">
+                <attribute name="t-attf-class">text-center {{ 'd-none d-md-table-cell' if report_type == 'html' else '' }}</attribute>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']//thead/tr//th[@name='th_taxes']" position="replace"/>
             <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_description']" position="before">
             	<th name="th_art_no" class="text-left"><span>Art-No.</span></th>
             </xpath>
             <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']//t[@name='account_invoice_line_accountable']//td[@name='account_invoice_line_name']" position="replace">
-            	<td name="account_invoice_line_art_no"><span t-if="line.product_id" t-field="line.product_id.default_code" t-options="{'widget': 'text'}"/></td>
+            	<td name="account_invoice_line_art_no" width="10%"><span t-if="line.product_id" t-field="line.product_id.default_code" t-options="{'widget': 'text'}"/></td>
             	<td name="account_invoice_line_name"><span t-if="line.product_id" t-field="line.product_id.name" t-options="{'widget': 'text'}"/></td>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']//thead/tr//th[@name='th_quantity']" position="before">
+                <th name="th_profilfarbe" class="text-left" width="10%"><span>Profilfarbe</span></th>
+                <th name="th_grosse" class="text-left" width="10%"><span>Grösse</span></th>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']//span[@id='line_tax_ids']/.." position="replace"/>
+            <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']//span[@t-field='line.price_unit']/.." position="attributes">
+                <attribute name="t-attf-class">text-center sale_order_line_data_blank</attribute>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']//span[@t-field='line.quantity']/.." position="before">
+                <td name="td_profilfarbe" class="text-left"><span t-field="line.x_studio_farbe"/></td>
+                <td name="td_grosse" width="10%" class="text-left"><span t-field="line.x_studio_groesse"/></td>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']//t[@name='account_invoice_line_accountable']//span[@t-field='line.product_uom_id']" position="replace"/>
+            <xpath expr="//table[@name='invoice_line_table']//thead/tr//th[@name='th_description']" position="attributes">
+                <attribute name="width">45%</attribute>
+            </xpath>
+            <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']//td[@name='account_invoice_line_name']" position="attributes">
+                <attribute name="width">45%</attribute>
             </xpath>
  	</template>
 </odoo>
