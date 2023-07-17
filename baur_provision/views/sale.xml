@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="sale_order_form_view_inh" model="ir.ui.view">
+		<field name="name">sale.order.form.view.inh</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="ons_productivity_qrcode_scan.view_order_form_cust" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='execution']" position="after">
+				<field name="vermittelt_durch_id" domain="[('vermittelt_durch', '=', True)]" />
+			</xpath>
+		</field>
+	</record>
+
+	<record id="account_move_form_view_inh" model="ir.ui.view">
+		<field name="name">account.move.form.view.inh</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_move_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//group[@id='header_right_group']" position="inside">
+				<field name="vermittelt_durch_id" domain="[('vermittelt_durch', '=', True)]" />
+			</xpath>
+		</field>
+	</record>
+
+	<record id="baur_base_view_partner_form" model="ir.ui.view">
+		<field name="name">baur.base.view.partner.form</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_partner_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='vat']" position="after">
+				<field name="vermittelt_durch" />
+			</xpath>
+		</field>
+	</record>
+
+	<record id="baur_sale_order_view_search_inherit_quotation" model="ir.ui.view">
+		<field name="name">baur.sale.order.view.search.inherit.quotation</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation" />
+		<field name="arch" type="xml">
+			<xpath expr="//filter[@name='filter_create_date']" position="after">
+				<separator/>
+				<filter string="Vermittelt Durch" name="vermittelt_durch" domain="[('vermittelt_durch_id','!=', False)]"/>
+			</xpath>
+		</field>
+	</record>
+
+	<record id="baur_view_account_invoice_filter" model="ir.ui.view">
+		<field name="name">baur.view.account.invoice.filter</field>
+		<field name="model">account.move</field>
+		<field name="inherit_id" ref="account.view_account_invoice_filter" />
+		<field name="arch" type="xml">
+			<xpath expr="//filter[@name='cancel']" position="after">
+				<separator/>
+				<filter string="Vermittelt Durch" name="vermittelt_durch" domain="[('vermittelt_durch_id','!=', False)]"/>
+			</xpath>
+		</field>
+	</record>
+
+	<record id="baur_view_res_partner_filter" model="ir.ui.view">
+		<field name="name">baur.view.res.partner.filter</field>
+		<field name="model">res.partner</field>
+		<field name="inherit_id" ref="base.view_res_partner_filter"/>
+		<field name="arch" type="xml">
+			<xpath expr="//filter[@name='inactive']" position="after">
+				<separator/>
+				<filter string="Vermittelt Durch" name="vermittelt_durch" domain="[('vermittelt_durch','!=', False)]"/>
+			</xpath>
+ 		</field>
+	</record>
+</odoo>
