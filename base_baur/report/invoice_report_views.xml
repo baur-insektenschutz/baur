@@ -57,7 +57,7 @@
             <xpath expr="//div[@class='clearfix']//div[@id='total']" position="replace">
                 <div id="total" class="row" name="total">
                     <div class="" style="width:50%;font-family: Roboto; font-size: 13.3333px;">
-                        <table class="table table-borderless table-sm" t-attf-style="margin-top: #{17 if o.invoice_line_ids else 0}%">
+                        <table class="table table-borderless table-sm" t-attf-style="margin-top: #{15 if o.invoice_line_ids else 0}%">
                             <tr>
                                 <td class="pl-0">
                                     <p t-if="o.invoice_payment_term_id" class="mb-5" style="margin-top: 18%">
@@ -66,7 +66,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <table class="table table-borderless table-sm" t-attf-style="margin-top: #{17 if o.invoice_line_ids and not o.invoice_payment_term_id else 0}%;line-height:1.5em;">
+                        <table class="table table-borderless table-sm" t-attf-style="margin-top: #{15 if o.invoice_line_ids and not o.invoice_payment_term_id else 0}%;line-height:1.5em;">
                         	<tr style="line-height:1.5em;" t-if="o.garantie">
                         		<td class="p-0" width="15%">
                         			<p><span>Garantie:</span></p>

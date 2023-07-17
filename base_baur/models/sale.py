@@ -231,6 +231,8 @@ class SaleOrderTemplate(models.Model):
     garantie_wiederverkaufer = fields.Boolean(string="Garantie Wiederverkäufer")
     freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
     freier_text = fields.Html('Freier Text')
+    ausmessen_liefern_und_montieren = fields.Boolean(string="Ausmessen, liefern und montieren")
+    reparieren_ersetzen_von = fields.Boolean(string="Reparieren / Ersetzen von")
 
     @api.onchange('freier_text_block_id')
     def onchange_freier_text_block_id(self):
@@ -295,6 +297,20 @@ class SaleOrder(models.Model):
                 self.freier_text_block_id = template.freier_text_block_id
             if template.freier_text:
                 self.freier_text = template.freier_text
+            if template.ausmessen_liefern_und_montieren:
+                self.x_studio_ausmessen_liefern_und_montieren = template.ausmessen_liefern_und_montieren
+            if template.reparieren_ersetzen_von:
+                self.x_studio_reparieren_ersetzen_von = template.reparieren_ersetzen_von
+        return res
+
+    def _create_invoices(self, grouped=False, final=False, date=None):
+        res = super(SaleOrder, self)._create_invoices(grouped=grouped, final=final, date=date)
+        res.x_studio_ausmessen_liefern_und_montieren = self.x_studio_ausmessen_liefern_und_montieren if self.x_studio_ausmessen_liefern_und_montieren else None
+        res.x_studio_reparieren_ersetzen_von = self.x_studio_reparieren_ersetzen_von if self.x_studio_reparieren_ersetzen_von else None
+        res.garantie = self.garantie if self.garantie else None
+        res.garantie_wiederverkaufer = self.garantie_wiederverkaufer if self.garantie_wiederverkaufer else None
+        res.freier_text_block_id = self.freier_text_block_id if self.freier_text_block_id else None
+        res.freier_text = self.freier_text if self.freier_text else None
         return res
 
 

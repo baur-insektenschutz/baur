@@ -107,15 +107,15 @@
                         <table class="table table-borderless table-sm" t-attf-style="margin-top: #{18 if doc.order_line and not doc.payment_term_id else 0}%" t-if="doc.validity_date or doc.preise_sonderfarben or doc.x_studio_preise_inkl_montage or doc.preise_exkl_montage">
                             <tr style="line-height:1.5em;" t-if="doc.validity_date">
                                 <td width="21%" class="p-0">
-                                    <span class="mb-1">Angebots-<br />gültigkeit:</span>
+                                    <span class="mb-1">Angebots-<br/>gültigkeit:</span>
                                 </td>
                                 <td width="79%" class="p-0">
-                                    <p style="margin-top:1.5em;" class="mb-1"><span t-esc="doc.validity_date" t-options="{&quot;widget&quot;: &quot;date&quot;}" /> (exkl. Sonderfarben)</p>
+                                    <p style="margin-top:1.5em;" class="mb-1"><span t-esc="doc.validity_date" t-options="{&quot;widget&quot;: &quot;date&quot;}"/> (exkl. Sonderfarben)</p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.preise_sonderfarben">
                                 <td width="21%" class="p-0">
-                                    <p class="mb-1"><span>Preise<br />Sonderfarben:</span></p>
+                                    <p class="mb-1"><span>Preise<br/>Sonderfarben:</span></p>
                                 </td>
                                 <td width="79%" class="p-0">
                                     <p style="margin-top:1.5em;" class="mb-1"><span> gültig 4 Wochen</span></p>
@@ -144,7 +144,7 @@
                                     <p><span>Lieferfrist:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p><span t-esc="doc.x_studio_lieferfrist" /></p>
+                                    <p><span t-esc="doc.x_studio_lieferfrist"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:0em;" t-if="doc.termin">
@@ -202,7 +202,7 @@
                                     <p class="mb-1"><span>Rabatt:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> Alle Rabatte exkl. Farbzuschläge und exkl. Reparaur</span></p>
+                                    <p class="mb-1"><span> Alle Rabatte exkl. Farbzuschläge und exkl. Reparatur</span></p>
                                 </td>
                             </tr>
                         </table>
@@ -220,14 +220,14 @@
                                     <p class="mb-1"><span>Garantie:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <span class="mb-1"><span> 3 Jahre Garantie auf Produkte (exkl. auf Gewebe<br />Schäden durch unsachgemässe Montage sind nicht garantieberechtigt</span></span>
+                                    <span class="mb-1"><span> 3 Jahre Garantie auf Produkte (exkl. auf Gewebe)<br/>Schäden durch unsachgemässe Montage sind nicht garantieberechtigt</span></span>
                                 </td>
                             </tr>
                         </table>
                         <table class="table table-borderless table-sm" style="line-height:1.5em;" t-if="doc.freier_text">
                             <div class="row mb-4" t-if="doc.freier_text">
                                 <div class="col">
-                                    <t t-raw="doc.freier_text" />
+                                    <t t-raw="doc.freier_text"/>
                                 </div>
                             </div>
                         </table>

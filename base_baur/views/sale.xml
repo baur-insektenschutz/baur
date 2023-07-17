@@ -34,6 +34,10 @@
         <field name="model">sale.order.template</field>
         <field name="type">form</field>
         <field name="arch" type="xml">
+            <xpath expr="//div[@id='number_of_days']" position="after">
+                <field name="ausmessen_liefern_und_montieren"/>
+                <field name="reparieren_ersetzen_von"/>
+            </xpath>
             <xpath expr="//notebook" position="inside">
                 <page name="page_konditionen" string="Baur Konditionen">
                     <group>
@@ -103,12 +107,12 @@
               <field name="x_studio_farbe" string="Farbe"/>
               <field name="x_studio_groesse" string="Grösse"/>
             </xpath>
+            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
+              <xpath expr="//field[@name='product_template_id']" position="move"/>
+            </xpath>
             <xpath expr="//field[@name='partner_shipping_id']" position="after">
               <field name="x_studio_ausmessen_liefern_und_montieren" string="Ausmessen, liefern und montieren"/>
               <field name="x_studio_reparieren_ersetzen_von" string="Reparieren / Ersetzen von"/>
-            </xpath>
-            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
-              <xpath expr="//field[@name='product_template_id']" position="move"/>
             </xpath>
         </field>
     </record>
