@@ -6,5 +6,5 @@ from odoo import fields, models, api
 class ProductTemplate(models.Model):
     _inherit = "product.template"
 
-    farbe = fields.Char(string="Farbe")
+    farbe = fields.Many2one("x_farben", string="Farbe")
     grosse = fields.Char(string="Grosse")
