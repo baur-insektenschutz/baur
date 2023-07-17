@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 # Powered by Mindphin Technologies.
 {
-    'name': 'Baur Provision',
+    'name': '(sd) Baur Provision',
     'version': '1.0',
     "summary": '',
     'description': """ """,
     "category": "Sales",
     'license': 'OPL-1',
-    'author': 'Kanak Infosystems LLP.',
-    'website': 'https://www.kanakinfosystems.com',
+    'author': 'Soludoo',
+    'website': 'https://www.soludoo.ch',
     'images': '',
     'depends': ['sale_management', 'account'],
     'data': [
