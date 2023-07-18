@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 # Powered by Mindphin Technologies.
 {
-    'name': '(sd) Base Baur',
+    'name': '(sd) Baur Report',
     'version': '1.0',
     "summary": '',
     'description': """ """,
     "category": "Sales",
     'author': 'Soludoo',
-    'website': 'https://www.soludoo.ch',
+    'website': 'https://www.soludoo.ch/',
     'images': '',
     'depends': ['sale_management'],
     'data': [

@@ -56,7 +56,7 @@
             <xpath expr="//span[@t-field='o.invoice_payment_term_id.note']" position="replace"/>
             <xpath expr="//div[@class='clearfix']//div[@id='total']" position="replace">
                 <div id="total" class="row" name="total">
-                    <div class="" style="width:50%;font-family: Roboto; font-size: 13.3333px;">
+                    <div class="" style="width:49%;margin-left:17px;font-family: Roboto; font-size: 13.3333px;">
                         <table class="table table-borderless table-sm" t-attf-style="margin-top: #{15 if o.invoice_line_ids else 0}%">
                             <tr>
                                 <td class="pl-0">
@@ -92,7 +92,7 @@
                             </div>
                         </table>
                     </div>
-                    <div style="width:48%">
+                    <div style="width:47%">
                         <table class="table table-sm" style="page-break-inside: avoid;">
                             <!--Tax totals-->
                             <t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>
@@ -161,6 +161,11 @@
             </xpath>
             <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']//td[@name='account_invoice_line_name']" position="attributes">
                 <attribute name="width">45%</attribute>
+            </xpath>
+            <xpath expr="//p[@name='payment_communication']" position="replace">
+              <p t-if="o.move_type in ('out_invoice', 'in_refund')" name="payment_communication">
+                  Bitte benutzen Sie den beigefügten QR-Einzahlungsschein für Ihre Zahlung:
+              </p>
             </xpath>
  	</template>
 </odoo>

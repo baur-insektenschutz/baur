@@ -226,7 +226,7 @@ class SaleOrderTemplate(models.Model):
     rabatt_10 = fields.Boolean(string="Rabatt 10%")
     rabatt_40 = fields.Boolean(string="Rabatt 40%")
     rabatt_u = fields.Boolean(string="Rabatt U")
-    rabattierung = fields.Boolean(string="Rabattierung")
+    rabattreduktion = fields.Boolean(string="Rabattreduktion")
     garantie = fields.Boolean(string="Garantie")
     garantie_wiederverkaufer = fields.Boolean(string="Garantie Wiederverkäufer")
     freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
@@ -251,7 +251,7 @@ class SaleOrder(models.Model):
     rabatt_10 = fields.Boolean(string="Rabatt 10%")
     rabatt_40 = fields.Boolean(string="Rabatt 40%")
     rabatt_u = fields.Boolean(string="Rabatt U")
-    rabattierung = fields.Boolean(string="Rabattierung")
+    rabattreduktion = fields.Boolean(string="Rabattreduktion")
     garantie = fields.Boolean(string="Garantie")
     garantie_wiederverkaufer = fields.Boolean(string="Garantie Wiederverkäufer")
     freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
@@ -287,8 +287,8 @@ class SaleOrder(models.Model):
                 self.rabatt_40 = template.rabatt_40
             if template.rabatt_u:
                 self.rabatt_u = template.rabatt_u
-            if template.rabattierung:
-                self.rabattierung = template.rabattierung
+            if template.rabattreduktion:
+                self.rabattreduktion = template.rabattreduktion
             if template.garantie:
                 self.garantie = template.garantie
             if template.garantie_wiederverkaufer:

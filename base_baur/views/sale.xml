@@ -54,7 +54,7 @@
                             <field name="rabatt_10" string="Rabatt 10%"/>
                             <field name="rabatt_40" string="Rabatt 40%"/>
                             <field name="rabatt_u" string="Rabatt U"/>
-                            <field name="rabattierung" string="Rabattierung"/>
+                            <field name="rabattreduktion" string="Rabatt Reduktion"/>
                             <field name="garantie" string="Garantie"/>
                             <field name="garantie_wiederverkaufer" string="Garantie Wiederverkäufer"/>
                         </group>
@@ -88,7 +88,7 @@
                             <field name="rabatt_10" string="Rabatt 10%"/>
                             <field name="rabatt_40" string="Rabatt 40%"/>
                             <field name="rabatt_u" string="Rabatt U"/>
-                            <field name="rabattierung" string="Rabattierung"/>
+                            <field name="rabattreduktion" string="Rabatt Reduktion"/>
                             <field name="garantie" string="Garantie"/>
                             <field name="garantie_wiederverkaufer" string="Garantie Wiederverkäufer"/>
                         </group>

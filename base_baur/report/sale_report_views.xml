@@ -83,7 +83,7 @@
             <xpath expr="//span[@t-field='doc.payment_term_id.note']" position="replace" />
             <xpath expr="//div[@name='so_total_summary']//div[@id='total']" position="replace">
                 <div id="total" class="row" name="total">
-                    <div class="" style="width:50%;font-family: Roboto; font-size: 13.3333px;">
+                    <div class="" style="width:49%;margin-left:17px;font-family: Roboto; font-size: 13.3333px;">
                         <table class="table table-borderless table-sm" t-if="doc.payment_term_id">
                             <tr>
                                 <td class="pl-0">
@@ -94,7 +94,7 @@
                             </tr>
                         </table>
                     </div>
-                    <div style="width:48%">
+                    <div style="width:47%">
                         <table class="table table-sm">
                             <!-- Tax totals -->
                             <t t-set="tax_totals" t-value="json.loads(doc.tax_totals_json)" />
@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 <div id="baur_konditionen" class="row" name="baur_konditionen">
-                    <div class="" style="width:50%;font-family: Roboto; font-size: 13.3333px;">
+                    <div class="" style="width:49%;margin-left:17px;font-family: Roboto; font-size: 13.3333px;">
                         <table class="table table-borderless table-sm" t-attf-style="margin-top: #{18 if doc.order_line and not doc.payment_term_id else 0}%" t-if="doc.validity_date or doc.preise_sonderfarben or doc.x_studio_preise_inkl_montage or doc.preise_exkl_montage">
                             <tr style="line-height:1.5em;" t-if="doc.validity_date">
                                 <td width="21%" class="p-0">
@@ -164,7 +164,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <table class="table table-borderless table-sm" t-if="doc.rabatt_5 or doc.rabatt_10 or doc.rabatt_40 or doc.rabatt_u or doc.rabattierung">
+                        <table class="table table-borderless table-sm" t-if="doc.rabatt_5 or doc.rabatt_10 or doc.rabatt_40 or doc.rabatt_u or doc.rabattreduktion">
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_5">
                                 <td class="p-0" width="21%">
                                     <p class="mb-1"><span>Rabatt:</span></p>
@@ -197,12 +197,12 @@
                                     <p class="mb-1"><span> 5% Uttiger Rabatt bereits in Abzug gebracht</span></p>
                                 </td>
                             </tr>
-                            <tr style="line-height:1.5em;" t-if="doc.rabattierung">
+                            <tr style="line-height:1.5em;" t-if="doc.rabattreduktion">
                                 <td class="p-0" width="21%">
-                                    <p class="mb-1"><span>Rabatt:</span></p>
+                                    <p class="mb-1"><span>Rabatt-<br/>Reduktion:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> Alle Rabatte exkl. Farbzuschläge und exkl. Reparatur</span></p>
+                                    <p style="margin-top:1.5em;" class="mb-1"><span> Wird ein zweites Ausmass erforderlich, kann sich der Mengenrabatt reduzieren oder entfällt ganz</span></p>
                                 </td>
                             </tr>
                         </table>
@@ -232,7 +232,7 @@
                             </div>
                         </table>
                     </div>
-                     <div style="width:50%">
+                     <div style="width:47%">
                      </div>
                 </div>
             </xpath>
