@@ -28,9 +28,3 @@ class SaleAdvancePaymentInv(models.TransientModel):
         res = super(SaleAdvancePaymentInv, self)._prepare_invoice_values(order, name, amount, so_line)
         res['vermittelt_durch_id'] = order.vermittelt_durch_id if order.vermittelt_durch_id else None
         return res
-
-
-class ResPartner(models.Model):
-    _inherit = "res.partner"
-
-    vermittelt_durch = fields.Boolean(string="(sd) Provisionsberechtigt")
