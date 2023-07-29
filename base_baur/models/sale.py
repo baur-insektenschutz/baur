@@ -193,3 +193,150 @@ class AccountPaymentTermLine(models.Model):
             due_date += relativedelta(days=self.days_after)
         return due_date
 
+
+class TextBlocks(models.Model):
+    _name = 'text.blocks'
+
+    name = fields.Char('Text-block Name')
+    text_block = fields.Html('Text-block Text')
+
+
+class SaleOrderTemplate(models.Model):
+    _inherit = "sale.order.template"
+
+    x_studio_lieferfrist = fields.Selection(
+        [
+            ('ca. 6 Wochen', 'ca. 6 Wochen'),
+            ('ca. 8 Wochen', 'ca. 8 Wochen'),
+            ('6 - 8 Wochen', '6 - 8 Wochen'),
+            ('8 - 10 Wochen', '8 - 10 Wochen'),
+            ('4 Wochen', '4 Wochen'),
+            ('ca. 4 Wochen, wird abgeholt in Uttigen', 'ca. 4 Wochen, wird abgeholt in Uttigen'),
+            ('ca. 4 Wochen, wird geliefert', 'ca. 4 Wochen, wird geliefert'),
+            ('ca. 3 bis 4 Wochen', 'ca. 3 bis 4 Wochen'),
+            ('4 - 6 Wochen', '4 - 6 Wochen'),
+        ]
+    )
+    x_studio_preise_inkl_montage = fields.Boolean(string="Preise inkl. Montage")
+    termin = fields.Boolean(string="Termin")
+    abholung = fields.Boolean(string="Abholung")
+    preise_sonderfarben = fields.Boolean(string="Preise Sonderfarben")
+    preise_exkl_montage = fields.Boolean(string="Preise exkl. Montage")
+    rabatt_5 = fields.Boolean(string="Rabatt 5%")
+    rabatt_10 = fields.Boolean(string="Rabatt 10%")
+    rabatt_40 = fields.Boolean(string="Rabatt 40%")
+    rabatt_u = fields.Boolean(string="Rabatt U")
+    rabattreduktion = fields.Boolean(string="Rabattreduktion")
+    garantie = fields.Boolean(string="Garantie")
+    garantie_wiederverkaufer = fields.Boolean(string="Garantie Wiederverkäufer")
+    freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
+    freier_text = fields.Html('Freier Text')
+    ausmessen_liefern_und_montieren = fields.Boolean(string="Ausmessen, liefern und montieren")
+    reparieren_ersetzen_von = fields.Boolean(string="Reparieren / Ersetzen von")
+
+    @api.onchange('freier_text_block_id')
+    def onchange_freier_text_block_id(self):
+        if self.freier_text_block_id:
+            self.freier_text = self.freier_text_block_id.text_block
+
+
+class SaleOrder(models.Model):
+    _inherit = "sale.order"
+
+    termin = fields.Boolean(string="Termin")
+    abholung = fields.Boolean(string="Abholung")
+    preise_sonderfarben = fields.Boolean(string="Preise Sonderfarben")
+    preise_exkl_montage = fields.Boolean(string="Preise exkl. Montage")
+    rabatt_5 = fields.Boolean(string="Rabatt 5%")
+    rabatt_10 = fields.Boolean(string="Rabatt 10%")
+    rabatt_40 = fields.Boolean(string="Rabatt 40%")
+    rabatt_u = fields.Boolean(string="Rabatt U")
+    rabattreduktion = fields.Boolean(string="Rabattreduktion")
+    garantie = fields.Boolean(string="Garantie")
+    garantie_wiederverkaufer = fields.Boolean(string="Garantie Wiederverkäufer")
+    freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
+    freier_text = fields.Html('Freier Text')
+
+    @api.onchange('freier_text_block_id')
+    def onchange_freier_text_block_id(self):
+        if self.freier_text_block_id:
+            self.freier_text = self.freier_text_block_id.text_block
+
+    @api.onchange('sale_order_template_id')
+    def onchange_sale_order_template_id(self):
+        res = super(SaleOrder, self).onchange_sale_order_template_id()
+        if self.sale_order_template_id:
+            template = self.sale_order_template_id
+            if template.x_studio_lieferfrist:
+                self.x_studio_lieferfrist = template.x_studio_lieferfrist
+            if template.x_studio_preise_inkl_montage:
+                self.x_studio_preise_inkl_montage = template.x_studio_preise_inkl_montage
+            if template.termin:
+                self.termin = template.termin
+            if template.abholung:
+                self.abholung = template.abholung
+            if template.preise_sonderfarben:
+                self.preise_sonderfarben = template.preise_sonderfarben
+            if template.preise_exkl_montage:
+                self.preise_exkl_montage = template.preise_exkl_montage
+            if template.rabatt_5:
+                self.rabatt_5 = template.rabatt_5
+            if template.rabatt_10:
+                self.rabatt_10 = template.rabatt_10
+            if template.rabatt_40:
+                self.rabatt_40 = template.rabatt_40
+            if template.rabatt_u:
+                self.rabatt_u = template.rabatt_u
+            if template.rabattreduktion:
+                self.rabattreduktion = template.rabattreduktion
+            if template.garantie:
+                self.garantie = template.garantie
+            if template.garantie_wiederverkaufer:
+                self.garantie_wiederverkaufer = template.garantie_wiederverkaufer
+            if template.freier_text_block_id:
+                self.freier_text_block_id = template.freier_text_block_id
+            if template.freier_text:
+                self.freier_text = template.freier_text
+            if template.ausmessen_liefern_und_montieren:
+                self.x_studio_ausmessen_liefern_und_montieren = template.ausmessen_liefern_und_montieren
+            if template.reparieren_ersetzen_von:
+                self.x_studio_reparieren_ersetzen_von = template.reparieren_ersetzen_von
+        return res
+
+    def _create_invoices(self, grouped=False, final=False, date=None):
+        res = super(SaleOrder, self)._create_invoices(grouped=grouped, final=final, date=date)
+        res.x_studio_ausmessen_liefern_und_montieren = self.x_studio_ausmessen_liefern_und_montieren if self.x_studio_ausmessen_liefern_und_montieren else None
+        res.x_studio_reparieren_ersetzen_von = self.x_studio_reparieren_ersetzen_von if self.x_studio_reparieren_ersetzen_von else None
+        res.garantie = self.garantie if self.garantie else None
+        res.garantie_wiederverkaufer = self.garantie_wiederverkaufer if self.garantie_wiederverkaufer else None
+        res.freier_text_block_id = self.freier_text_block_id if self.freier_text_block_id else None
+        res.freier_text = self.freier_text if self.freier_text else None
+        return res
+
+
+class SaleOrderLine(models.Model):
+    _inherit = "sale.order.line"
+
+    @api.onchange('product_id')
+    def product_id_change(self):
+        res = super(SaleOrderLine, self).product_id_change()
+        if self.product_id:
+            if self.product_id.farbe:
+                self.x_studio_farbe = self.product_id.farbe
+            if self.product_id.grosse:
+                self.x_studio_groesse = self.product_id.grosse
+        return res
+
+
+class AccountMove(models.Model):
+    _inherit = "account.move"
+
+    garantie = fields.Boolean(string="Garantie")
+    garantie_wiederverkaufer = fields.Boolean(string="Garantie Wiederverkäufer")
+    freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
+    freier_text = fields.Html('Freier Text')
+
+    @api.onchange('freier_text_block_id')
+    def onchange_freier_text_block_id(self):
+        if self.freier_text_block_id:
+            self.freier_text = self.freier_text_block_id.text_block

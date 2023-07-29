@@ -28,6 +28,124 @@
             </xpath>
         </field>
     </record>
+    <record id="base_baur_sale_order_template_view_form" model="ir.ui.view">
+        <field name="name">base.baur.sale.order.template.view.form</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+        <field name="model">sale.order.template</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='number_of_days']" position="after">
+                <field name="ausmessen_liefern_und_montieren"/>
+                <field name="reparieren_ersetzen_von"/>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="page_konditionen" string="Baur Konditionen">
+                    <group>
+                        <group>
+                            <field name="x_studio_lieferfrist" string="Lieferfrist"/>
+                            <field name="termin" string="Termin"/>
+                            <field name="abholung" string="Abholung"/>
+                            <field name="preise_sonderfarben" string="Preise Sonderfarben"/>
+                            <field name="x_studio_preise_inkl_montage" string="Preise inkl. Montage"/>
+                            <field name="preise_exkl_montage" string="Preise exkl. Montage"/>
+                        </group>
+                        <group>
+                            <field name="rabatt_5" string="Rabatt 5%"/>
+                            <field name="rabatt_10" string="Rabatt 10%"/>
+                            <field name="rabatt_40" string="Rabatt 40%"/>
+                            <field name="rabatt_u" string="Rabatt U"/>
+                            <field name="rabattreduktion" string="Rabatt Reduktion"/>
+                            <field name="garantie" string="Garantie"/>
+                            <field name="garantie_wiederverkaufer" string="Garantie Wiederverkäufer"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="freier_text_block_id" string="Freier Text Block" no_create_edit="1" />
+                        <field name="freier_text" string="Freier Text"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="base_baur_view_order_form" model="ir.ui.view">
+        <field name="name">base.baur.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[last()]" position="after">
+                <page name="page_konditionen" string="Baur Konditionen">
+                    <group>
+                        <group>
+                            <field name="x_studio_lieferfrist" string="Lieferfrist"/>
+                            <field name="termin" string="Termin"/>
+                            <field name="abholung" string="Abholung"/>
+                            <field name="preise_sonderfarben" string="Preise Sonderfarben"/>
+                            <field name="x_studio_preise_inkl_montage" string="Preise inkl. Montage"/>
+                            <field name="preise_exkl_montage" string="Preise exkl. Montage"/>
+                        </group>
+                        <group>
+                            <field name="rabatt_5" string="Rabatt 5%"/>
+                            <field name="rabatt_10" string="Rabatt 10%"/>
+                            <field name="rabatt_40" string="Rabatt 40%"/>
+                            <field name="rabatt_u" string="Rabatt U"/>
+                            <field name="rabattreduktion" string="Rabatt Reduktion"/>
+                            <field name="garantie" string="Garantie"/>
+                            <field name="garantie_wiederverkaufer" string="Garantie Wiederverkäufer"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="freier_text_block_id" string="Freier Text Block"/>
+                        <field name="freier_text" string="Freier Text"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='x_studio_lieferfrist']" position="before">
+                <xpath expr="//field[@name='payment_term_id']" position="move"/>
+            </xpath>
+            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='product_id']" position="after">
+              <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='name']" position="move"/>
+              <field name="x_studio_farbe" string="Farbe"/>
+              <field name="x_studio_groesse" string="Grösse"/>
+            </xpath>
+            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
+              <xpath expr="//field[@name='product_template_id']" position="move"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+              <field name="x_studio_ausmessen_liefern_und_montieren" string="Ausmessen, liefern und montieren"/>
+              <field name="x_studio_reparieren_ersetzen_von" string="Reparieren / Ersetzen von"/>
+            </xpath>
+        </field>
+    </record>
+    <!--Text block view starts here-->
+    <record id="base_baur_view_text_block_form" model="ir.ui.view">
+        <field name="name">base.baur.view.text.block.form</field>
+        <field name="model">text.blocks</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="text_block"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="base_baur_view_text_block_tree" model="ir.ui.view">
+        <field name="name">base.baur.view.text.block.form</field>
+        <field name="model">text.blocks</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="base_baur_view_text_block_action" model="ir.actions.act_window">
+        <field name="name">Free Text Blocks</field>
+        <field name="res_model">text.blocks</field>
+        <field name='view_mode'>tree,form</field>
+    </record>
+    <menuitem id="config_text_blocks_menu" name="Free Text Blocks" parent="sale.menu_sales_config" action="base_baur_view_text_block_action" sequence="5"/>
     <record id="baur_account_move_form" model="ir.ui.view">
         <field name="name">account.move.baur</field>
         <field name="model">account.move</field>
