@@ -3,25 +3,47 @@
     <template id="base_baur_report_invoice_document_inherit" inherit_id="account.report_invoice_document">
         <xpath expr="//t[@t-set='address']" position="before">
                 <div class="row address" style="margin-top:-40px;">
-                    <div class="col-4"><img class="img-fluid" src="/web/image/644-2ae27e1e/baur_logo_sz.png" style="width:150px;" /></div>
+                    <div class="col-4"><img class="img-fluid" src="/web/image/644-2ae27e1e/baur_logo_sz.png" style="width:100px;"/></div>
                     <div class="col-4" style="line-height: 1.2;"><span>
-                            <p>BAUR Insektenschutz AG<br />Eichenweg 11<br />3628 Uttigen<br /></p>
+                            <p><span style="font-weight:bold;">BAUR Insektenschutz AG</span><br/>Eichenweg 11<br/>3628 Uttigen<br/></p>
                         </span></div>
                     <div class="col-4" style="line-height: 1.2;">
-                        <p>Tel.         033 345 07 77<br />Mail       info@baur-uttigen.ch<br />Web      www.baur-uttigen.ch<br />MWST  CHE-279.642.932</p>
+                        <p>Tel.        033 345 07 77<br/>Mail       info@baur-uttigen.ch<br/>Web      www.baur-uttigen.ch<br/>MWST  CHE-279.642.932 MWST</p>
                     </div>
                 </div>
+                <br/>
+                <br/>
                 <div class="row address">
-                    <div class="col-5" />
-                    <div class="col-5 offset-2">
+                      
+                      <div class="col-3" style="line-height: 1.2;font-family: Roboto; font-size: 12px;">
+                        <br/>
+                        <br/>
+                        <t t-if="o.x_studio_lieferadresse_drucken and o.partner_shipping_id">
+                            <span><strong>Lieferadresse:</strong></span><br/>
+                            <t t-if="o.partner_shipping_id.name"><span t-field="o.partner_shipping_id.name"/><br/></t>
+                            <t t-if="not o.partner_shipping_id.name"><span t-field="o.partner_shipping_id.parent_id.name"/><br/></t>
+                            <t t-if="o.partner_shipping_id.x_studio_name2"><span t-field="o.partner_shipping_id.x_studio_name2"/><br/></t>
+                            <t t-if="not o.partner_shipping_id.name and o.partner_shipping_id.parent_id.x_studio_name2"><span t-field="o.partner_shipping_id.parent_id.x_studio_name2"/><br/></t>
+                            <t t-if="o.partner_shipping_id.street"><span t-field="o.partner_shipping_id.street"/><br/></t>
+                            <t t-if="o.partner_shipping_id.street2"><span t-field="o.partner_shipping_id.street2"/><br/></t>
+                            <t t-if="o.partner_shipping_id.zip"><span t-field="o.partner_shipping_id.zip"/></t>
+                            <t t-if="o.partner_shipping_id.state_id.name"><span t-field="o.partner_shipping_id.state_id.name"/></t>
+                            <t t-if="o.partner_shipping_id.city"><span t-field="o.partner_shipping_id.city"/><br/></t>
+                        </t>
+                    </div>
+                    <div class="col-5 offset-3">
+                      <br/>
+
                         <!--<div t-field="doc.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'mobile','x_studio_name2']"/>-->
-                        <t t-if="o.partner_id.name"><span t-field="o.partner_id.name" /><br /></t>
-                        <t t-if="o.partner_id.x_studio_name2"><span t-field="o.partner_id.x_studio_name2" /><br /></t>
-                        <t t-if="o.partner_id.street"><span t-field="o.partner_id.street" /><br /></t>
-                        <t t-if="o.partner_id.street2"><span t-field="o.partner_id.street2" /><br /></t>
-                        <t t-if="o.partner_id.zip"><span t-field="o.partner_id.zip" /></t>
-                        <t t-if="o.partner_id.state_id.name"><span t-field="o.partner_id.state_id.name" /></t>
-                        <t t-if="o.partner_id.city"><span t-field="o.partner_id.city" /><br /></t>
+                        <t t-if="o.partner_id.name"><span t-field="o.partner_id.name"/><br/></t>
+                        <t t-if="not o.partner_id.name"><span t-field="o.partner_id.parent_id.name"/><br/></t>
+                        <t t-if="o.partner_id.x_studio_name2"><span t-field="o.partner_id.x_studio_name2"/><br/></t>
+                        <t t-if="not o.partner_id.name and o.partner_shipping_id.parent_id.x_studio_name2"><span t-field="o.partner_id.parent_id.x_studio_name2"/><br/></t>
+                        <t t-if="o.partner_id.street"><span t-field="o.partner_id.street"/><br/></t>
+                        <t t-if="o.partner_id.street2"><span t-field="o.partner_id.street2"/><br/></t>
+                        <t t-if="o.partner_id.zip"><span t-field="o.partner_id.zip"/></t>
+                        <t t-if="o.partner_id.state_id.name"><span t-field="o.partner_id.state_id.name"/></t>
+                        <t t-if="o.partner_id.city"><span t-field="o.partner_id.city"/><br/></t>
                         <!--<t t-if="o.partner_id.country_id.name"><span t-field="o.partner_id.country_id.name"/><br/></t>-->
                     </div>
                 </div>
@@ -29,12 +51,12 @@
             <xpath expr="//div[@id='informations']" position="replace">
                 <div class="row">
                     <div class="col">
-                        <span t-field="o.invoice_date" t-options="{'widget':'date'}" />
+                        <span t-field="o.invoice_date" t-options="{'widget':'date'}"/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <span t-field="o.user_id.x_studio_initialen" />
+                        <span t-field="o.user_id.x_studio_initialen"/>
                     </div>
                 </div>
                 <div class="row">
@@ -61,28 +83,28 @@
                             <tr>
                                 <td class="pl-0">
                                     <p t-if="o.invoice_payment_term_id" class="mb-5" style="margin-top: 18%">
-                                        <span>Zahlung </span><span t-field="o.invoice_payment_term_id" />
+                                        <span>Zahlung </span><span t-field="o.invoice_payment_term_id"/>
                                     </p>
                                 </td>
                             </tr>
                         </table>
                         <table class="table table-borderless table-sm" t-attf-style="margin-top: #{15 if o.invoice_line_ids and not o.invoice_payment_term_id else 0}%;line-height:1.5em;">
-                        	<tr style="line-height:1.5em;" t-if="o.garantie">
-                        		<td class="p-0" width="15%">
-                        			<p><span>Garantie:</span></p>
-                        		</td>
-                        		<td class="p-0" width="85%">
-                        			<p><span> 3 Jahre Garantie auf Material (exkl. auf Gewebe)</span></p>
-                        		</td>
-                        	</tr>
-                        	<tr style="line-height:1.5em;" t-if="o.garantie_wiederverkaufer">
-                        		<td class="p-0" width="15%">
-                        			<p><span>Garantie:</span></p>
-                        		</td>
-                        		<td class="p-0" width="85%">
-                        			<p><span> 3 Jahre Garantie auf Produkte (exkl. auf Gewebe<br/>Schäden durch unsachgemässe Montage sind nicht garantieberechtigt</span></p>
-                        		</td>
-                        	</tr>
+                            <tr style="line-height:1.5em;" t-if="o.garantie">
+                                <td class="p-0" width="15%">
+                                    <p><span>Garantie:</span></p>
+                                </td>
+                                <td class="p-0" width="85%">
+                                    <p><span> 3 Jahre Garantie auf Material (exkl. auf Gewebe)</span></p>
+                                </td>
+                            </tr>
+                            <tr style="line-height:1.5em;" t-if="o.garantie_wiederverkaufer">
+                                <td class="p-0" width="15%">
+                                    <p><span>Garantie:</span></p>
+                                </td>
+                                <td class="p-0" width="85%">
+                                    <p><span> 3 Jahre Garantie auf Produkte (exkl. auf Gewebe<br/>Schäden durch unsachgemässe Montage sind nicht garantieberechtigt</span></p>
+                                </td>
+                            </tr>
                         </table>
                         <table class="table table-borderless table-sm" style="line-height:1.5em;">
                             <div class="row mb-4" t-if="o.freier_text">
@@ -137,11 +159,11 @@
             </xpath>
             <xpath expr="//table[@name='invoice_line_table']//thead/tr//th[@name='th_taxes']" position="replace"/>
             <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_description']" position="before">
-            	<th name="th_art_no" class="text-left"><span>Art-No.</span></th>
+                <th name="th_art_no" class="text-left"><span>Art-No.</span></th>
             </xpath>
             <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']//t[@name='account_invoice_line_accountable']//td[@name='account_invoice_line_name']" position="replace">
-            	<td name="account_invoice_line_art_no" width="10%"><span t-if="line.product_id" t-field="line.product_id.default_code" t-options="{'widget': 'text'}"/></td>
-            	<td name="account_invoice_line_name"><span t-if="line.product_id" t-field="line.product_id.name" t-options="{'widget': 'text'}"/></td>
+                <td name="account_invoice_line_art_no" width="10%"><span t-if="line.product_id" t-field="line.product_id.default_code" t-options="{'widget': 'text'}"/></td>
+                <td name="account_invoice_line_name"><span t-if="line.product_id" t-field="line.product_id.name" t-options="{'widget': 'text'}"/></td>
             </xpath>
             <xpath expr="//table[@name='invoice_line_table']//thead/tr//th[@name='th_quantity']" position="before">
                 <th name="th_profilfarbe" class="text-left" width="10%"><span>Profilfarbe</span></th>

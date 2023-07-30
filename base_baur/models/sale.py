@@ -267,40 +267,23 @@ class SaleOrder(models.Model):
         res = super(SaleOrder, self).onchange_sale_order_template_id()
         if self.sale_order_template_id:
             template = self.sale_order_template_id
-            if template.x_studio_lieferfrist:
-                self.x_studio_lieferfrist = template.x_studio_lieferfrist
-            if template.x_studio_preise_inkl_montage:
-                self.x_studio_preise_inkl_montage = template.x_studio_preise_inkl_montage
-            if template.termin:
-                self.termin = template.termin
-            if template.abholung:
-                self.abholung = template.abholung
-            if template.preise_sonderfarben:
-                self.preise_sonderfarben = template.preise_sonderfarben
-            if template.preise_exkl_montage:
-                self.preise_exkl_montage = template.preise_exkl_montage
-            if template.rabatt_5:
-                self.rabatt_5 = template.rabatt_5
-            if template.rabatt_10:
-                self.rabatt_10 = template.rabatt_10
-            if template.rabatt_40:
-                self.rabatt_40 = template.rabatt_40
-            if template.rabatt_u:
-                self.rabatt_u = template.rabatt_u
-            if template.rabattreduktion:
-                self.rabattreduktion = template.rabattreduktion
-            if template.garantie:
-                self.garantie = template.garantie
-            if template.garantie_wiederverkaufer:
-                self.garantie_wiederverkaufer = template.garantie_wiederverkaufer
-            if template.freier_text_block_id:
-                self.freier_text_block_id = template.freier_text_block_id
-            if template.freier_text:
-                self.freier_text = template.freier_text
-            if template.ausmessen_liefern_und_montieren:
-                self.x_studio_ausmessen_liefern_und_montieren = template.ausmessen_liefern_und_montieren
-            if template.reparieren_ersetzen_von:
-                self.x_studio_reparieren_ersetzen_von = template.reparieren_ersetzen_von
+            self.x_studio_lieferfrist = template.x_studio_lieferfrist
+            self.x_studio_preise_inkl_montage = template.x_studio_preise_inkl_montage
+            self.termin = template.termin
+            self.abholung = template.abholung
+            self.preise_sonderfarben = template.preise_sonderfarben
+            self.preise_exkl_montage = template.preise_exkl_montage
+            self.rabatt_5 = template.rabatt_5
+            self.rabatt_10 = template.rabatt_10
+            self.rabatt_40 = template.rabatt_40
+            self.rabatt_u = template.rabatt_u
+            self.rabattreduktion = template.rabattreduktion
+            self.garantie = template.garantie
+            self.garantie_wiederverkaufer = template.garantie_wiederverkaufer
+            self.freier_text_block_id = template.freier_text_block_id
+            self.freier_text = template.freier_text
+            self.x_studio_ausmessen_liefern_und_montieren = template.ausmessen_liefern_und_montieren
+            self.x_studio_reparieren_ersetzen_von = template.reparieren_ersetzen_von
         return res
 
     def _create_invoices(self, grouped=False, final=False, date=None):
