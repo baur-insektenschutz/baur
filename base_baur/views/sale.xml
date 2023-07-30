@@ -114,6 +114,11 @@
               <field name="x_studio_ausmessen_liefern_und_montieren" string="Ausmessen, liefern und montieren"/>
               <field name="x_studio_reparieren_ersetzen_von" string="Reparieren / Ersetzen von"/>
             </xpath>
+            <xpath expr="//field[@name='currency_id']" position="before">
+              <field name="x_studio_lieferadresse_drucken"/>
+              <field name="x_studio_rechnungsadresse_drucken"/>
+            </xpath>
+            
         </field>
     </record>
     <!--Text block view starts here-->
