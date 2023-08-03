@@ -57,6 +57,7 @@
                             <field name="rabattreduktion" string="Rabatt Reduktion"/>
                             <field name="garantie" string="Garantie"/>
                             <field name="garantie_wiederverkaufer" string="Garantie Wiederverkäufer"/>
+                            <field name="remove_order_existing_line"/>
                         </group>
                     </group>
                     <group>
