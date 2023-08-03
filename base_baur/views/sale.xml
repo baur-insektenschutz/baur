@@ -35,6 +35,7 @@
         <field name="type">form</field>
         <field name="arch" type="xml">
             <xpath expr="//div[@id='number_of_days']" position="after">
+                <field name="pricelist_id"/>
                 <field name="ausmessen_liefern_und_montieren"/>
                 <field name="reparieren_ersetzen_von"/>
             </xpath>
@@ -112,6 +113,7 @@
               <xpath expr="//field[@name='product_template_id']" position="move"/>
             </xpath>
             <xpath expr="//field[@name='partner_shipping_id']" position="after">
+
               <field name="x_studio_ausmessen_liefern_und_montieren" string="Ausmessen, liefern und montieren"/>
               <field name="x_studio_reparieren_ersetzen_von" string="Reparieren / Ersetzen von"/>
             </xpath>

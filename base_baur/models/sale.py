@@ -236,6 +236,12 @@ class SaleOrderTemplate(models.Model):
     ausmessen_liefern_und_montieren = fields.Boolean(string="Ausmessen, liefern und montieren")
     reparieren_ersetzen_von = fields.Boolean(string="Reparieren / Ersetzen von")
     remove_order_existing_line = fields.Boolean(string="Remove Existing Line")
+    pricelist_id = fields.Many2one(
+        'product.pricelist', string='Pricelist', check_company=True,  # Unrequired company
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+        help="If you change the pricelist, only newly added lines will be affected.")
+
+
 
     @api.onchange('freier_text_block_id')
     def onchange_freier_text_block_id(self):
@@ -333,6 +339,8 @@ class SaleOrder(models.Model):
 
         if self.sale_order_template_id:
             template = self.sale_order_template_id
+            if template.pricelist_id:
+                self.pricelist_id = template.pricelist_id.id
             self.x_studio_lieferfrist = template.x_studio_lieferfrist
             self.x_studio_preise_inkl_montage = template.x_studio_preise_inkl_montage
             self.termin = template.termin
