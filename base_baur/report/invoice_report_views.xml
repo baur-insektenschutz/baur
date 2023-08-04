@@ -31,7 +31,11 @@
                             <t t-if="o.partner_shipping_id.city"><span t-field="o.partner_shipping_id.city"/><br/></t>
                         </t>
                     </div>
-                    <div class="col-5 offset-3">
+                    <div class="col-3" style="line-height: 1.2;font-family: Roboto; font-size: 12px;">
+                    </div>
+                    <div class="col-1" style="line-height: 1.2;font-family: Roboto; font-size: 12px;">
+                      </div>
+                    <div class="col-5">
                       <br/>
 
                         <!--<div t-field="doc.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'mobile','x_studio_name2']"/>-->
@@ -159,11 +163,12 @@
             </xpath>
             <xpath expr="//table[@name='invoice_line_table']//thead/tr//th[@name='th_taxes']" position="replace"/>
             <xpath expr="//table[@name='invoice_line_table']/thead/tr/th[@name='th_description']" position="before">
-                <th name="th_art_no" class="text-left"><span>Art-No.</span></th>
+                 <t t-if="o.x_show_art_no"><th name="th_art_no" class="text-left" width="10%"><span t-if="o.x_show_art_no">Art-No.</span></th></t>
             </xpath>
             <xpath expr="//table[@name='invoice_line_table']/tbody[@class='invoice_tbody']//t[@name='account_invoice_line_accountable']//td[@name='account_invoice_line_name']" position="replace">
-                <td name="account_invoice_line_art_no" width="10%"><span t-if="line.product_id" t-field="line.product_id.default_code" t-options="{'widget': 'text'}"/></td>
-                <td name="account_invoice_line_name"><span t-if="line.product_id" t-field="line.product_id.name" t-options="{'widget': 'text'}"/></td>
+                <t t-if="o.x_show_art_no"><td name="account_invoice_line_art_no" width="10%"><span t-if="line.product_id and line.move_id.x_show_art_no" t-field="line.product_id.default_code" t-options="{'widget': 'text'}"/></td></t>
+                <t t-if="line.product_id.default_code"><td name="account_invoice_line_name"><span t-if="line.product_id" t-esc="line.name.replace('['+line.product_id.default_code+']','')" t-options="{'widget': 'text'}"/></td></t>
+                <t t-if="not line.product_id.default_code"><td name="account_invoice_line_name"><span t-if="line.product_id" t-esc="line.name" t-options="{'widget': 'text'}"/></td></t>
             </xpath>
             <xpath expr="//table[@name='invoice_line_table']//thead/tr//th[@name='th_quantity']" position="before">
                 <th name="th_profilfarbe" class="text-left" width="10%"><span>Profilfarbe</span></th>

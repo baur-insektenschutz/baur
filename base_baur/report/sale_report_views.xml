@@ -48,7 +48,8 @@
                             <t t-if="doc.partner_shipping_id.city"><span t-field="doc.partner_shipping_id.city"/><br/></t>
                         </t>
                     </div>
-                    
+                    <div class="col-1" style="line-height: 1.2;font-family: Roboto; font-size: 12px;">
+                    </div>
                     <div class="col-5">
                         <!--<div t-field="doc.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'mobile','x_studio_name2']"/>-->
                         <span style="font-family: Roboto; font-size: 10px;"><strong> </strong></span><br/>
@@ -147,7 +148,7 @@
                 <div id="baur_konditionen" class="row" name="baur_konditionen">
                     <div class="" style="width:49%;margin-left:17px;font-family: Roboto; font-size: 13.3333px;">
                         <table class="table table-borderless table-sm" t-attf-style="margin-top: #{18 if doc.order_line and not doc.payment_term_id else 0}%" t-if="doc.validity_date or doc.preise_sonderfarben or doc.x_studio_preise_inkl_montage or doc.preise_exkl_montage">
-                            <tr style="line-height:1.5em;" t-if="doc.validity_date">
+                            <tr style="line-height:1.5em;" t-if="doc.validity_date and doc.state=='draft'">
                                 <td width="21%" class="p-0">
                                     <span class="mb-1">Angebots-<br/>gültigkeit:</span>
                                 </td>
@@ -289,11 +290,11 @@
             </xpath>
             <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_taxes']" position="replace"/>
             <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_description']" position="before">
-                <th name="th_art_no" class="text-left" width="10%"><span>Art-No.</span></th>
+                <t t-if="doc.x_show_art_no"><th name="th_art_no" class="text-left" width="10%"><span t-if="doc.x_show_art_no">Art-No.</span></th></t>
             </xpath>
             <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_quantity']" position="before">
-                <th name="th_profilfarbe" class="text-left" width="10%"><span>Profilfarbe</span></th>
-                <th name="th_grosse" class="text-left" width="10%"><span>Grösse</span></th>
+                <th name="th_profilfarbe" class="text-left" width="15%"><span>Profilfarbe</span></th>
+                <th name="th_grosse" class="text-left" width="15%"><span>Grösse</span></th>
             </xpath>
             <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_taxes']" position="replace"/>
             <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_priceunit']" position="attributes">
@@ -301,19 +302,27 @@
             </xpath>
             <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_quantity']" position="before">
                 <td name="td_profilfarbe" class="text-left"><span t-field="line.x_studio_farbe"/></td>
-                <td name="td_grosse" width="10%" class="text-left"><span t-field="line.x_studio_groesse"/></td>
+                <td name="td_grosse" class="text-left"><span t-field="line.x_studio_groesse"/></td>
             </xpath>
             <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_quantity']//span[@t-field='line.product_uom']" position="replace"/>
             <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_name']" position="replace">
-                <td name="td_art_no"><span t-if="line.product_id" t-field="line.product_id.default_code"/></td>
-                <td name="td_name"><span t-if="line.product_id" t-field="line.product_id.name"/></td>
+               
+                <!--<t t-if="doc.x_show_art_no"><td name="td_art_no"><span t-if="line.product_id and line.order_id.x_show_art_no" t-field="line.product_id.default_code"/></td></t>-->
+                <!--<t t-if="line.product_id.default_code"><td name="td_name"><span t-if="line.product_id" t-esc="line.name.replace('['+line.product_id.default_code+']','')"/></td></t>-->
+                <!--<t t-if="not line.product_id.default_code"><td name="td_name"><span t-if="line.product_id" t-esc="line.name"/></td></t>-->
+                
+                <t t-if="doc.x_show_art_nr"><td name="td_art_no"><span t-if="line.product_id and line.order_id.x_show_art_nr" t-field="line.product_id.default_code"/></td></t>
+                <t t-if="line.product_id.default_code and line.product_id.product_template_variant_value_ids"><td name="td_name"><span t-if="line.product_id" t-esc="line.name.replace('['+line.product_id.default_code+']','').replace('('+line.product_id.product_template_variant_value_ids[0].name+')','')"/></td></t>
+                <t t-if="not line.product_id.default_code and line.product_id.product_template_variant_value_ids"><td name="td_name"><span t-if="line.product_id" t-esc="line.name.replace('('+line.product_id.product_template_variant_value_ids[0].name+')','')"/></td></t>
+                <t t-if="not line.product_id.default_code and not line.product_id.product_template_variant_value_ids"><td name="td_name"><span t-if="line.product_id" t-esc="line.name"/></td></t>
+                <t t-if="line.product_id.default_code and not line.product_id.product_template_variant_value_ids"><td name="td_name"><span t-if="line.product_id" t-esc="line.name.replace('['+line.product_id.default_code+']','')"/></td></t>
             </xpath>
             <xpath expr="//table[hasclass('o_main_table')]//thead/tr//th[@name='th_description']" position="attributes">
-                <attribute name="width">45%</attribute>
+                <attribute name="width">42%</attribute>
             </xpath>
-            <xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_name']" position="attributes">
-                <attribute name="width">45%</attribute>
-            </xpath>
+            <!--<xpath expr="//table[hasclass('o_main_table')]/tbody[@class='sale_tbody']//td[@name='td_name']" position="attributes">-->
+            <!--    <attribute name="width">45%</attribute>-->
+            <!--</xpath>-->
         </template>
     </data>
 </odoo>

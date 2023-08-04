@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 # Powered by Mindphin Technologies.
 
+from datetime import timedelta
+
 from odoo import fields, models, api
 from dateutil.relativedelta import relativedelta
 from odoo.tools import format_date, formatLang, frozendict
 
-
+from odoo.tools import is_html_empty
 
 class AccountPaymentTerm(models.Model):
     _inherit = "account.payment.term"
@@ -233,6 +235,13 @@ class SaleOrderTemplate(models.Model):
     freier_text = fields.Html('Freier Text')
     ausmessen_liefern_und_montieren = fields.Boolean(string="Ausmessen, liefern und montieren")
     reparieren_ersetzen_von = fields.Boolean(string="Reparieren / Ersetzen von")
+    remove_order_existing_line = fields.Boolean(string="Remove Existing Line")
+    pricelist_id = fields.Many2one(
+        'product.pricelist', string='Pricelist', check_company=True,  # Unrequired company
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+        help="If you change the pricelist, only newly added lines will be affected.")
+
+
 
     @api.onchange('freier_text_block_id')
     def onchange_freier_text_block_id(self):
@@ -262,11 +271,76 @@ class SaleOrder(models.Model):
         if self.freier_text_block_id:
             self.freier_text = self.freier_text_block_id.text_block
 
+
     @api.onchange('sale_order_template_id')
     def onchange_sale_order_template_id(self):
-        res = super(SaleOrder, self).onchange_sale_order_template_id()
+        #res = super(SaleOrder, self).onchange_sale_order_template_id()
+
+        if not self.sale_order_template_id:
+            self.require_signature = self._get_default_require_signature()
+            self.require_payment = self._get_default_require_payment()
+            return
+
+        template = self.sale_order_template_id.with_context(lang=self.partner_id.lang)
+
+        # --- first, process the list of products from the template
+        order_lines = []
+        if not self.sale_order_template_id.remove_order_existing_line:
+            order_lines = []
+        else:
+            order_lines = [(5, 0, 0)]
+
+        for line in template.sale_order_template_line_ids:
+            data = self._compute_line_data_for_template_change(line)
+
+            if line.product_id:
+                price = line.product_id.lst_price
+                discount = 0
+
+                if self.pricelist_id:
+                    pricelist_price = self.pricelist_id.with_context(uom=line.product_uom_id.id).get_product_price(line.product_id, 1, False)
+
+                    if self.pricelist_id.discount_policy == 'without_discount' and price:
+                        discount = max(0, (price - pricelist_price) * 100 / price)
+                    else:
+                        price = pricelist_price
+
+                data.update({
+                    'price_unit': price,
+                    'discount': discount,
+                    'product_uom_qty': line.product_uom_qty,
+                    'product_id': line.product_id.id,
+                    'product_uom': line.product_uom_id.id,
+                    'customer_lead': self._get_customer_lead(line.product_id.product_tmpl_id),
+                })
+
+            order_lines.append((0, 0, data))
+
+        self.order_line = order_lines
+        self.order_line._compute_tax_id()
+
+        # then, process the list of optional products from the template
+        option_lines = []
+        for option in template.sale_order_template_option_ids:
+            data = self._compute_option_data_for_template_change(option)
+            option_lines.append((0, 0, data))
+
+        self.sale_order_option_ids = option_lines
+
+        if template.number_of_days > 0:
+            self.validity_date = fields.Date.context_today(self) + timedelta(template.number_of_days)
+
+        self.require_signature = template.require_signature
+        self.require_payment = template.require_payment
+
+        if not is_html_empty(template.note):
+            self.note = template.note
+
+
         if self.sale_order_template_id:
             template = self.sale_order_template_id
+            if template.pricelist_id:
+                self.pricelist_id = template.pricelist_id.id
             self.x_studio_lieferfrist = template.x_studio_lieferfrist
             self.x_studio_preise_inkl_montage = template.x_studio_preise_inkl_montage
             self.termin = template.termin
@@ -284,7 +358,7 @@ class SaleOrder(models.Model):
             self.freier_text = template.freier_text
             self.x_studio_ausmessen_liefern_und_montieren = template.ausmessen_liefern_und_montieren
             self.x_studio_reparieren_ersetzen_von = template.reparieren_ersetzen_von
-        return res
+        #return res
 
     def _create_invoices(self, grouped=False, final=False, date=None):
         res = super(SaleOrder, self)._create_invoices(grouped=grouped, final=final, date=date)
