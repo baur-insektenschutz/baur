@@ -44,21 +44,80 @@
                     <group>
                         <group>
                             <field name="x_studio_lieferfrist" string="Lieferfrist"/>
-                            <field name="termin" string="Termin"/>
-                            <field name="abholung" string="Abholung"/>
-                            <field name="preise_sonderfarben" string="Preise Sonderfarben"/>
-                            <field name="x_studio_preise_inkl_montage" string="Preise inkl. Montage"/>
-                            <field name="preise_exkl_montage" string="Preise exkl. Montage"/>
+                            <separator string="Termin Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="termin" nolabel="1" string="Show Termin"/>
+                                <strong><label for="termin"/></strong>
+                            </div>
+                            <field name="termin_text" placeholder="Write termin text..." nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}" colspan="4"/>
+                            <separator string="Abholung Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="abholung" nolabel="1" string="Show Abholung"/>
+                                <strong><label for="abholung"/></strong>
+                            </div>
+                            <field name="abholung_text" placeholder="Write abholung text..." nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}" colspan="4"/>
+                            <separator string="Preise Sonderfarben Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="preise_sonderfarben" nolabel="1" string="Show Preise Sonderfarben"/>
+                                <strong><label for="preise_sonderfarben"/></strong>
+                            </div>
+                            <field name="preise_sonderfarben_text" placeholder="Write preise sonderfarben text..." nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}" colspan="4"/>
+                            <separator string="Preise inkl. Montage Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="x_studio_preise_inkl_montage" nolabel="1" string="Show Preise inkl. Montage"/>
+                                <strong><label for="x_studio_preise_inkl_montage"/></strong>
+                            </div>
+                            <field name="preise_inkl_montage_text" placeholder="Write preise inkl. montage text..." nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}" colspan="4"/>
+                            <separator string="Preise exkl. Montage Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="preise_exkl_montage" nolabel="1" string="Show Preise exkl. Montage"/>
+                                <strong><label for="preise_exkl_montage"/></strong>
+                            </div>
+                            <field name="preise_exkl_montage_text" placeholder="Write preise exkl. montage text..." nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}" colspan="4"/>
                         </group>
                         <group>
-                            <field name="rabatt_5" string="Rabatt 5%"/>
-                            <field name="rabatt_10" string="Rabatt 10%"/>
-                            <field name="rabatt_40" string="Rabatt 40%"/>
-                            <field name="rabatt_u" string="Rabatt U"/>
-                            <field name="rabattreduktion" string="Rabatt Reduktion"/>
-                            <field name="garantie" string="Garantie"/>
-                            <field name="garantie_wiederverkaufer" string="Garantie Wiederverkäufer"/>
-                            <field name="remove_order_existing_line"/>
+                            <separator string="Rabatt 5% Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_5" nolabel="1" string="Show Rabatt 5%"/>
+                                <strong><label for="rabatt_5"/></strong>
+                            </div>
+                            <field name="rabatt_5_text" placeholder="Write rabatt 5% text..." nolabel ="1" attrs="{'invisible': [('rabatt_5', '=', False)]}" colspan="4"/>
+                            <separator string="Rabatt 10% Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_10" nolabel="1" string="Show Rabatt 5%"/>
+                                <strong><label for="rabatt_10"/></strong>
+                            </div>
+                            <field name="rabatt_10_text" placeholder="Write rabatt 10% text..." nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}" colspan="4"/>
+                            <separator string="Rabatt 40% Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_40" nolabel="1" string="Show Rabatt 40%"/>
+                                <strong><label for="rabatt_40"/></strong>
+                            </div>
+                            <field name="rabatt_40_text" placeholder="Write rabatt 40% text..." nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}" colspan="4"/>
+                            <separator string="Rabatt U Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_u" nolabel="1" string="Show Rabatt U"/>
+                                <strong><label for="rabatt_u"/></strong>
+                            </div>
+                            <field name="rabatt_u_text" placeholder="Write rabatt U text..." nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}" colspan="4"/>
+                            <separator string="Rabatt Reduktion Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabattreduktion" nolabel="1" string="Show Rabatt Reduktion"/>
+                                <strong><label for="rabattreduktion"/></strong>
+                            </div>
+                            <field name="rabattreduktion_text" placeholder="Write rabatt reduktion text..." nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}" colspan="4"/>
+                            <separator string="Garantie Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="garantie" nolabel="1" string="Show Garantie"/>
+                                <strong><label for="garantie"/></strong>
+                            </div>
+                            <field name="garantie_text" placeholder="Write garantie text..." nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}" colspan="4"/>                             
+                            <separator string="Garantie Wiederverkäufer Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="garantie_wiederverkaufer" nolabel="1" string="Show Garantie Wiederverkäufer"/>
+                                <strong><label for="garantie_wiederverkaufer"/></strong>
+                            </div>
+                            <field name="garantie_wiederverkaufer_text" placeholder="Write garantie wiederverkäufer text..." nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}" colspan="4"/>
                         </group>
                     </group>
                     <group>
@@ -79,20 +138,80 @@
                     <group>
                         <group>
                             <field name="x_studio_lieferfrist" string="Lieferfrist"/>
-                            <field name="termin" string="Termin"/>
-                            <field name="abholung" string="Abholung"/>
-                            <field name="preise_sonderfarben" string="Preise Sonderfarben"/>
-                            <field name="x_studio_preise_inkl_montage" string="Preise inkl. Montage"/>
-                            <field name="preise_exkl_montage" string="Preise exkl. Montage"/>
+                            <separator string="Termin Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="termin" nolabel="1" string="Show Termin"/>
+                                <strong><label for="termin"/></strong>
+                            </div>
+                            <field name="termin_text" placeholder="Write termin text..." nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}" colspan="4"/>
+                            <separator string="Abholung Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="abholung" nolabel="1" string="Show Abholung"/>
+                                <strong><label for="abholung"/></strong>
+                            </div>
+                            <field name="abholung_text" placeholder="Write abholung text..." nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}" colspan="4"/>
+                            <separator string="Preise Sonderfarben Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="preise_sonderfarben" nolabel="1" string="Show Preise Sonderfarben"/>
+                                <strong><label for="preise_sonderfarben"/></strong>
+                            </div>
+                            <field name="preise_sonderfarben_text" placeholder="Write preise sonderfarben text..." nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}" colspan="4"/>
+                            <separator string="Preise inkl. Montage Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="x_studio_preise_inkl_montage" nolabel="1" string="Show Preise inkl. Montage"/>
+                                <strong><label for="x_studio_preise_inkl_montage"/></strong>
+                            </div>
+                            <field name="preise_inkl_montage_text" placeholder="Write preise inkl. montage text..." nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}" colspan="4"/>
+                            <separator string="Preise exkl. Montage Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="preise_exkl_montage" nolabel="1" string="Show Preise exkl. Montage"/>
+                                <strong><label for="preise_exkl_montage"/></strong>
+                            </div>
+                            <field name="preise_exkl_montage_text" placeholder="Write preise exkl. montage text..." nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}" colspan="4"/>
                         </group>
                         <group>
-                            <field name="rabatt_5" string="Rabatt 5%"/>
-                            <field name="rabatt_10" string="Rabatt 10%"/>
-                            <field name="rabatt_40" string="Rabatt 40%"/>
-                            <field name="rabatt_u" string="Rabatt U"/>
-                            <field name="rabattreduktion" string="Rabatt Reduktion"/>
-                            <field name="garantie" string="Garantie"/>
-                            <field name="garantie_wiederverkaufer" string="Garantie Wiederverkäufer"/>
+                            <separator string="Rabatt 5% Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_5" nolabel="1" string="Show Rabatt 5%"/>
+                                <strong><label for="rabatt_5"/></strong>
+                            </div>
+                            <field name="rabatt_5_text" placeholder="Write rabatt 5% text..." nolabel ="1" attrs="{'invisible': [('rabatt_5', '=', False)]}" colspan="4"/>
+                            <separator string="Rabatt 10% Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_10" nolabel="1" string="Show Rabatt 5%"/>
+                                <strong><label for="rabatt_10"/></strong>
+                            </div>
+                            <field name="rabatt_10_text" placeholder="Write rabatt 10% text..." nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}" colspan="4"/>
+                            <separator string="Rabatt 40% Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_40" nolabel="1" string="Show Rabatt 40%"/>
+                                <strong><label for="rabatt_40"/></strong>
+                            </div>
+                            <field name="rabatt_40_text" placeholder="Write rabatt 40% text..." nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}" colspan="4"/>
+                            <separator string="Rabatt U Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_u" nolabel="1" string="Show Rabatt U"/>
+                                <strong><label for="rabatt_u"/></strong>
+                            </div>
+                            <field name="rabatt_u_text" placeholder="Write rabatt U text..." nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}" colspan="4"/>
+                            <separator string="Rabatt Reduktion Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabattreduktion" nolabel="1" string="Show Rabatt Reduktion"/>
+                                <strong><label for="rabattreduktion"/></strong>
+                            </div>
+                            <field name="rabattreduktion_text" placeholder="Write rabatt reduktion text..." nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}" colspan="4"/>
+                            <separator string="Garantie Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="garantie" nolabel="1" string="Show Garantie"/>
+                                <strong><label for="garantie"/></strong>
+                            </div>
+                            <field name="garantie_text" placeholder="Write garantie text..." nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}" colspan="4"/>                             
+                            <separator string="Garantie Wiederverkäufer Text"/>
+                            <div class="o_row" colspan="6">
+                                <field name="garantie_wiederverkaufer" nolabel="1" string="Show Garantie Wiederverkäufer"/>
+                                <strong><label for="garantie_wiederverkaufer"/></strong>
+                            </div>
+                            <field name="garantie_wiederverkaufer_text" placeholder="Write garantie wiederverkäufer text..." nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}" colspan="4"/>
                         </group>
                     </group>
                     <group>
@@ -162,6 +281,17 @@
             <xpath expr="//field[@name='invoice_payment_term_id']" position='attributes'>
                  <attribute name='context'>{'example_date': invoice_date, 'invoice_id': id}</attribute>
             </xpath>
+        </field>
+    </record>
+    <record id="action_condition_text" model="ir.actions.server">
+        <field name="name">Add Condition Text</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                records.action_condition_text_add()
         </field>
     </record>
 </odoo>

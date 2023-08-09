@@ -161,7 +161,7 @@
                                     <p class="mb-1"><span>Preise<br/>Sonderfarben:</span></p>
                                 </td>
                                 <td width="79%" class="p-0">
-                                    <p style="margin-top:1.5em;" class="mb-1"><span> gültig 4 Wochen</span></p>
+                                    <p style="margin-top:1.5em;" class="mb-1"><span t-esc="doc.preise_sonderfarben_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1em;" t-if="doc.x_studio_preise_inkl_montage">
@@ -169,7 +169,7 @@
                                     <p class="mb-1"><span>Preise:</span></p>
                                 </td>
                                 <td width="79%" class="p-0">
-                                    <p class="mb-1"><span> inkl. Montage</span></p>
+                                    <p class="mb-1"><span t-esc="doc.preise_inkl_montage_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1em;" t-if="doc.preise_exkl_montage">
@@ -177,7 +177,7 @@
                                     <p class="mb-1"><span>Preise:</span></p>
                                 </td>
                                 <td width="79%" class="p-0">
-                                    <p class="mb-1"><span> exkl. Montage</span></p>
+                                    <p class="mb-1"><span t-esc="doc.preise_exkl_montage_text"/></p>
                                 </td>
                             </tr>
                         </table>
@@ -195,7 +195,7 @@
                                     <p><span>Termin:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p><span> nach Vereinbarung</span></p>
+                                    <p><span t-esc="doc.termin_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:0em;" t-if="doc.abholung">
@@ -203,7 +203,7 @@
                                     <p><span>Abholung:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p><span> ab Werkstatt, Uttigen</span></p>
+                                    <p><span t-esc="doc.abholung_text"/></p>
                                 </td>
                             </tr>
                         </table>
@@ -213,7 +213,7 @@
                                     <p class="mb-1"><span>Rabatt:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> 5% ab einem Bestellwert von CHF 2'000.- exkl. Sonderfarben und exkl. Reparaturen</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_5_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_10">
@@ -221,7 +221,7 @@
                                     <p class="mb-1"><span>Rabatt:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> 10% ab einem Bestellwert von CHF 3'000.- exkl. Sonderfarben und exkl. Reparaturen</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_10_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_40">
@@ -229,7 +229,7 @@
                                     <p class="mb-1"><span>Rabatt:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> 40% Wiederverkaufsrabatt exkl. Sonderfarben und exkl. Montage/Reparatur</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_40_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_u">
@@ -237,7 +237,7 @@
                                     <p class="mb-1"><span>Rabatt:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> 5% Uttiger Rabatt bereits in Abzug gebracht</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_u_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabattreduktion">
@@ -245,7 +245,7 @@
                                     <p class="mb-1"><span>Rabatt-<br/>Reduktion:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p><span> Wird ein zweites Ausmass erforderlich, kann sich der Mengenrabatt reduzieren oder entfällt ganz</span></p>
+                                    <p><span t-esc="doc.rabattreduktion_text"/></p>
                                 </td>
                             </tr>
                         </table>
@@ -255,7 +255,7 @@
                                     <p class="mb-1"><span>Garantie:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> 3 Jahre Garantie auf Material (exkl. auf Gewebe)</span></p>
+                                    <p class="mb-1"><span t-esc="doc.garantie_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.garantie_wiederverkaufer">
@@ -263,7 +263,7 @@
                                     <p class="mb-1"><span>Garantie:</span></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <span class="mb-1"><span> 3 Jahre Garantie auf Produkte (exkl. auf Gewebe)<br/>Schäden durch unsachgemässe Montage sind nicht garantieberechtigt</span></span>
+                                    <span class="mb-1"><span t-esc="doc.garantie_wiederverkaufer_text"/></span>
                                 </td>
                             </tr>
                         </table>
