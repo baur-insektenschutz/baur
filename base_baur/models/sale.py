@@ -220,29 +220,41 @@ class SaleOrderTemplate(models.Model):
         ]
     )
     termin = fields.Boolean(string="Show Termin")
+    termin_label = fields.Char(default="Termin:")
     termin_text = fields.Text(string="Termin Text", default="nach Vereinbarung")
     abholung = fields.Boolean(string="Show Abholung")
+    abholung_label = fields.Char(default="Abholung:")
     abholung_text = fields.Text(string="Abholung Text", default="ab Werkstatt, Uttigen")
     preise_sonderfarben = fields.Boolean(string="Show Preise Sonderfarben")
+    preise_sonderfarben_label = fields.Char(default="Preise Sonderfarben:")
     preise_sonderfarben_text = fields.Text(string="Preise Sonderfarben Text", default="gültig 4 Wochen")
     x_studio_preise_inkl_montage = fields.Boolean(string="Show Preise inkl. Montage")
+    preise_inkl_montage_label = fields.Char(default="Preise:")
     preise_inkl_montage_text = fields.Text(string="Preise inkl. Montage Text", default="inkl. Montage")
     preise_exkl_montage = fields.Boolean(string="Show Preise exkl. Montage")
+    preise_exkl_montage_label = fields.Char(default="Preise:")
     preise_exkl_montage_text = fields.Text(string="Preise exkl. Montage Text", default="exkl. Montage")
     rabatt_5 = fields.Boolean(string="Show Rabatt 5%")
+    rabatt_5_label = fields.Char(default="Rabatt:")
     rabatt_5_text = fields.Text(string="Rabatt 5% Text", default="5% ab einem Bestellwert von CHF 2'000.- exkl. Sonderfarben und exkl. Reparaturen")
     rabatt_10 = fields.Boolean(string="Show Rabatt 10%")
+    rabatt_10_label = fields.Char(default="Rabatt:")
     rabatt_10_text = fields.Text(string="Rabatt 10% Text", default="10% ab einem Bestellwert von CHF 3'000.- exkl. Sonderfarben und exkl. Reparaturen")
     rabatt_40 = fields.Boolean(string="Show Rabatt 40%")
+    rabatt_40_label = fields.Char(default="Rabatt:")
     rabatt_40_text = fields.Text(string="Rabatt 40% Text", default="40% Wiederverkaufsrabatt exkl. Sonderfarben und exkl. Montage/Reparatur")
     rabatt_u = fields.Boolean(string="Show Rabatt U")
+    rabatt_u_label = fields.Char(default="Rabatt:")
     rabatt_u_text = fields.Text(string="Rabatt U Text", default="5% Uttiger Rabatt bereits in Abzug gebracht")
     rabattreduktion = fields.Boolean(string="Show Rabattreduktion")
+    rabattreduktion_label = fields.Char(default="Rabatt- Reduktion:")
     rabattreduktion_text = fields.Text(string="Rabattreduktion Text", default="Wird ein zweites Ausmass erforderlich, kann sich der Mengenrabatt reduzieren oder entfällt ganz")
     garantie = fields.Boolean(string="Show Garantie")
+    garantie_label = fields.Char(default="Garantie:")
     garantie_text = fields.Text(string="Garantie Text", default="3 Jahre Garantie auf Material (exkl. auf Gewebe)")
     garantie_wiederverkaufer = fields.Boolean(string="Show Garantie Wiederverkäufer")
-    garantie_wiederverkaufer_text = fields.Text(string="Garantie Wiederverkäufer Text", default="3 Jahre Garantie auf Produkte (exkl. auf Gewebe)<br/>Schäden durch unsachgemässe Montage sind nicht garantieberechtigt")
+    garantie_wiederverkaufer_label = fields.Char(default="Garantie:")
+    garantie_wiederverkaufer_text = fields.Text(string="Garantie Wiederverkäufer Text", default="3 Jahre Garantie auf Produkte (exkl. auf Gewebe) Schäden durch unsachgemässe Montage sind nicht garantieberechtigt")
     freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
     freier_text = fields.Html('Freier Text')
     ausmessen_liefern_und_montieren = fields.Boolean(string="Ausmessen, liefern und montieren")
@@ -265,29 +277,41 @@ class SaleOrder(models.Model):
     _inherit = "sale.order"
 
     termin = fields.Boolean(string="Show Termin")
+    termin_label = fields.Char(default="Termin:")
     termin_text = fields.Text(string="Termin Text", default="nach Vereinbarung")
     abholung = fields.Boolean(string="Show Abholung")
+    abholung_label = fields.Char(default="Abholung:")
     abholung_text = fields.Text(string="Abholung Text", default="ab Werkstatt, Uttigen")
     preise_sonderfarben = fields.Boolean(string="Show Preise Sonderfarben")
+    preise_sonderfarben_label = fields.Char(default="Preise Sonderfarben:")
     preise_sonderfarben_text = fields.Text(string="Preise Sonderfarben Text", default="gültig 4 Wochen")
     x_studio_preise_inkl_montage = fields.Boolean(string="Show Preise inkl. Montage")
+    preise_inkl_montage_label = fields.Char(default="Preise:")
     preise_inkl_montage_text = fields.Text(string="Preise inkl. Montage Text", default="inkl. Montage")
     preise_exkl_montage = fields.Boolean(string="Show Preise exkl. Montage")
+    preise_exkl_montage_label = fields.Char(default="Preise:")
     preise_exkl_montage_text = fields.Text(string="Preise exkl. Montage Text", default="exkl. Montage")
     rabatt_5 = fields.Boolean(string="Show Rabatt 5%")
+    rabatt_5_label = fields.Char(default="Rabatt:")
     rabatt_5_text = fields.Text(string="Rabatt 5% Text", default="5% ab einem Bestellwert von CHF 2'000.- exkl. Sonderfarben und exkl. Reparaturen")
     rabatt_10 = fields.Boolean(string="Show Rabatt 10%")
+    rabatt_10_label = fields.Char(default="Rabatt:")
     rabatt_10_text = fields.Text(string="Rabatt 10% Text", default="10% ab einem Bestellwert von CHF 3'000.- exkl. Sonderfarben und exkl. Reparaturen")
     rabatt_40 = fields.Boolean(string="Show Rabatt 40%")
+    rabatt_40_label = fields.Char(default="Rabatt:")
     rabatt_40_text = fields.Text(string="Rabatt 40% Text", default="40% Wiederverkaufsrabatt exkl. Sonderfarben und exkl. Montage/Reparatur")
     rabatt_u = fields.Boolean(string="Show Rabatt U")
+    rabatt_u_label = fields.Char(default="Rabatt:")
     rabatt_u_text = fields.Text(string="Rabatt U Text", default="5% Uttiger Rabatt bereits in Abzug gebracht")
     rabattreduktion = fields.Boolean(string="Show Rabattreduktion")
+    rabattreduktion_label = fields.Char(default="Rabatt- Reduktion:")
     rabattreduktion_text = fields.Text(string="Rabattreduktion Text", default="Wird ein zweites Ausmass erforderlich, kann sich der Mengenrabatt reduzieren oder entfällt ganz")
     garantie = fields.Boolean(string="Show Garantie")
+    garantie_label = fields.Char(default="Garantie:")
     garantie_text = fields.Text(string="Garantie Text", default="3 Jahre Garantie auf Material (exkl. auf Gewebe)")
     garantie_wiederverkaufer = fields.Boolean(string="Show Garantie Wiederverkäufer")
-    garantie_wiederverkaufer_text = fields.Text(string="Garantie Wiederverkäufer Text", default="3 Jahre Garantie auf Produkte (exkl. auf Gewebe)<br/>Schäden durch unsachgemässe Montage sind nicht garantieberechtigt")
+    garantie_wiederverkaufer_label = fields.Char(default="Garantie:")
+    garantie_wiederverkaufer_text = fields.Text(string="Garantie Wiederverkäufer Text", default="3 Jahre Garantie auf Produkte (exkl. auf Gewebe) Schäden durch unsachgemässe Montage sind nicht garantieberechtigt")
     freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
     freier_text = fields.Html('Freier Text')
 
@@ -399,36 +423,47 @@ class SaleOrder(models.Model):
             self.termin = template.termin
             if template.termin:
                 self.termin_text = template.termin_text
+                self.termin_label = template.termin_label
             self.abholung = template.abholung
             if template.abholung:
                 self.abholung_text = template.abholung_text
+                self.abholung_label = template.abholung_label
             self.preise_sonderfarben = template.preise_sonderfarben
             if template.preise_sonderfarben:
                 self.preise_sonderfarben_text = template.preise_sonderfarben_text
+                self.preise_sonderfarben_label = template.preise_sonderfarben_label
             self.preise_exkl_montage = template.preise_exkl_montage
             if template.preise_exkl_montage:
                 self.preise_exkl_montage_text = template.preise_exkl_montage_text
+                self.preise_exkl_montage_label = template.preise_exkl_montage_label
             self.rabatt_5 = template.rabatt_5
             if template.rabatt_5:
                 self.rabatt_5_text = template.rabatt_5_text
+                self.rabatt_5_label = template.rabatt_5_label
             self.rabatt_10 = template.rabatt_10
             if template.rabatt_10:
                 self.rabatt_10_text = template.rabatt_10_text
+                self.rabatt_10_label = template.rabatt_10_label
             self.rabatt_40 = template.rabatt_40
             if template.rabatt_40:
                 self.rabatt_40_text = template.rabatt_40_text
+                self.rabatt_40_label = template.rabatt_40_label
             self.rabatt_u = template.rabatt_u
             if template.rabatt_u:
                 self.rabatt_u_text = template.rabatt_u_text
+                self.rabatt_u_label = template.rabatt_u_label
             self.rabattreduktion = template.rabattreduktion
             if template.rabattreduktion:
                 self.rabattreduktion_text = template.rabattreduktion_text
+                self.rabattreduktion_label = template.rabattreduktion_label
             self.garantie = template.garantie
             if template.garantie:
                 self.garantie_text = template.garantie_text
+                self.garantie_label = template.garantie_label
             self.garantie_wiederverkaufer = template.garantie_wiederverkaufer
             if template.garantie_wiederverkaufer:
                 self.garantie_wiederverkaufer_text = template.garantie_wiederverkaufer_text
+                self.garantie_wiederverkaufer_label = template.garantie_wiederverkaufer_label
             self.freier_text_block_id = template.freier_text_block_id
             self.freier_text = template.freier_text
             self.x_studio_ausmessen_liefern_und_montieren = template.ausmessen_liefern_und_montieren
