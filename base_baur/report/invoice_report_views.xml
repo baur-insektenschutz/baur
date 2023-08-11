@@ -70,12 +70,12 @@
                 </div>
                 <div class="row mb-4" t-if="o.x_studio_ausmessen_liefern_und_montieren">
                     <div class="col">
-                        <span class="">Ausmessen, liefern und montieren:</span>
+                        <span t-field="o.ausmessen_liefern_und_montieren_text"/>
                     </div>
                 </div>
                 <div class="row mb-4" t-if="o.x_studio_reparieren_ersetzen_von">
                     <div class="col">
-                        <span class="">Reparieren oder Ersatz von:</span>
+                        <span t-field="o.reparieren_ersetzen_von_text"/>
                     </div>
                 </div>
             </xpath>
@@ -95,18 +95,18 @@
                         <table class="table table-borderless table-sm" t-attf-style="margin-top: #{15 if o.invoice_line_ids and not o.invoice_payment_term_id else 0}%;line-height:1.5em;">
                             <tr style="line-height:1.5em;" t-if="o.garantie">
                                 <td class="p-0" width="15%">
-                                    <p><span>Garantie:</span></p>
+                                    <p><span t-field="o.garantie_label"/></p>
                                 </td>
                                 <td class="p-0" width="85%">
-                                    <p><span> 3 Jahre Garantie auf Material (exkl. auf Gewebe)</span></p>
+                                    <p><span t-field="o.garantie_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="o.garantie_wiederverkaufer">
                                 <td class="p-0" width="15%">
-                                    <p><span>Garantie:</span></p>
+                                    <p><span t-field="o.garantie_wiederverkaufer_label"/></p>
                                 </td>
                                 <td class="p-0" width="85%">
-                                    <p><span> 3 Jahre Garantie auf Produkte (exkl. auf Gewebe<br/>Schäden durch unsachgemässe Montage sind nicht garantieberechtigt</span></p>
+                                    <p><span t-field="o.garantie_wiederverkaufer_text"/></p>
                                 </td>
                             </tr>
                         </table>

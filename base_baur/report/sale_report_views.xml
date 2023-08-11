@@ -114,12 +114,12 @@
                 </div>
                 <div class="row mb-4" t-if="doc.x_studio_ausmessen_liefern_und_montieren">
                     <div class="col">
-                        <span class="">Ausmessen, liefern und montieren:</span>
+                        <span t-esc="doc.ausmessen_liefern_und_montieren_text"/>
                     </div>
                 </div>
                 <div class="row mb-4" t-if="doc.x_studio_reparieren_ersetzen_von">
                     <div class="col">
-                        <span class="">Reparieren oder Ersatz von:</span>
+                        <span t-esc="doc.reparieren_ersetzen_von_text"/>
                     </div>
                 </div>
             </xpath>
