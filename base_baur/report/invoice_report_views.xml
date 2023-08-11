@@ -190,8 +190,8 @@
                 <attribute name="width">45%</attribute>
             </xpath>
             <xpath expr="//p[@name='payment_communication']" position="replace">
-              <p t-if="o.move_type in ('out_invoice', 'in_refund')" name="payment_communication">
-                  Bitte benutzen Sie den beigefügten QR-Einzahlungsschein für Ihre Zahlung:
+              <p t-if="o.move_type in ('out_invoice', 'in_refund') and o.payment_communication" name="payment_communication" >
+                    <span t-field="o.payment_communication_text"/>
               </p>
             </xpath>
  	</template>

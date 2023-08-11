@@ -54,79 +54,81 @@
                         <group>
                             <field name="x_studio_lieferfrist" string="Lieferfrist"/>
                             <div class="o_row" colspan="6">
-                                <field name="termin" nolabel="1" string="Show Termin"/>
-                                <strong><field name="termin_sep" nolabel="1"/></strong>
+                                <field name="termin" nolabel="1"/>
+                                <field name="termin_sep" nolabel="1"/>
                             </div>
-                            <field name="termin_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}"/>
-                            <field name="termin_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}" colspan="4"/>
+                            <field name="termin_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}"/>
+                            <field name="termin_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}"/>
+
+
                             <div class="o_row" colspan="6">
                                 <field name="abholung" nolabel="1" string="Show Abholung"/>
-                                <strong><field name="abholung_sep" nolabel="1"/></strong>
+                                <field name="abholung_sep" nolabel="1 "/>
                             </div>
-                            <field name="abholung_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}"/>
-                            <field name="abholung_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}" colspan="4"/>
+                            <field name="abholung_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}"/>
+                            <field name="abholung_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="preise_sonderfarben" nolabel="1" string="Show Preise Sonderfarben"/>
-                                <strong><field name="preise_sonderfarben_sep" nolabel="1"/></strong>
+                                <field name="preise_sonderfarben_sep"  nolabel="1"/>
                             </div>
-                            <field name="preise_sonderfarben_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}"/>
-                            <field name="preise_sonderfarben_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}" colspan="4"/>
+                            <field name="preise_sonderfarben_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}"/>
+                            <field name="preise_sonderfarben_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="x_studio_preise_inkl_montage" nolabel="1" string="Show Preise inkl. Montage"/>
-                                <strong><field name="preise_inkl_montage_sep" nolabel="1"/></strong>
+                                <field name="preise_inkl_montage_sep"  nolabel="1"/>
                             </div>
-                            <field name="preise_inkl_montage_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}"/>
-                            <field name="preise_inkl_montage_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}" colspan="4"/>
+                            <field name="preise_inkl_montage_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}"/>
+                            <field name="preise_inkl_montage_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="preise_exkl_montage" nolabel="1" string="Show Preise exkl. Montage"/>
-                                <strong><field name="preise_exkl_montage_sep" nolabel="1"/></strong>
+                                <field name="preise_exkl_montage_sep"  nolabel="1"/>
                             </div>
-                            <field name="preise_exkl_montage_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}"/>
-                            <field name="preise_exkl_montage_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}" colspan="4"/>
+                            <field name="preise_exkl_montage_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}"/>
+                            <field name="preise_exkl_montage_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}"/>
                         </group>
                         <group>
                             <div class="o_row" colspan="6">
                                 <field name="rabatt_5" nolabel="1"/>
-                                <strong><field name="rabatt_5_sep" nolabel="1"/></strong>
+                                <field name="rabatt_5_sep" nolabel="1 "/>
                             </div>
-                            <field name="rabatt_5_label" placeholder="Report label..." nolabel="1" attrs="{'invisible': [('rabatt_5', '=', False)]}"/>
-                            <field name="rabatt_5_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('rabatt_5', '=', False)]}" colspan="4"/>
+                            <field name="rabatt_5_label" placeholder="Report label..." colspan="8" nolabel="1" attrs="{'invisible': [('rabatt_5', '=', False)]}"/>
+                            <field name="rabatt_5_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_5', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="rabatt_10" nolabel="1" string="Show Rabatt 5%"/>
-                                <strong><field name="rabatt_10_sep" nolabel="1"/></strong>
+                                <field name="rabatt_10_sep" nolabel=" 1"/>
                             </div>
-                            <field name="rabatt_10_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}"/>
-                            <field name="rabatt_10_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}" colspan="4"/>
+                            <field name="rabatt_10_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}"/>
+                            <field name="rabatt_10_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="rabatt_40" nolabel="1" string="Show Rabatt 40%"/>
-                                <strong><field name="rabatt_40_sep" nolabel="1"/></strong>
+                                <field name="rabatt_40_sep" nolabel=" 1"/>
                             </div>
-                            <field name="rabatt_40_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}"/>
-                            <field name="rabatt_40_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}" colspan="4"/>
+                            <field name="rabatt_40_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}"/>
+                            <field name="rabatt_40_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="rabatt_u" nolabel="1" string="Show Rabatt U"/>
-                                <strong><field name="rabatt_u_sep" nolabel="1"/></strong>
+                                <field name="rabatt_u_sep" nolabel="1 "/>
                             </div>
-                            <field name="rabatt_u_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}"/>
-                            <field name="rabatt_u_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}" colspan="4"/>
+                            <field name="rabatt_u_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}"/>
+                            <field name="rabatt_u_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="rabattreduktion" nolabel="1" string="Show Rabatt Reduktion"/>
-                                <strong><field name="rabattreduktion_sep" nolabel="1"/></strong>
+                                <field name="rabattreduktion_sep" nolabel="1"/>
                             </div>
-                            <field name="rabattreduktion_label"  placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}"/>
-                            <field name="rabattreduktion_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}" colspan="4"/>
+                            <field name="rabattreduktion_label"  placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}"/>
+                            <field name="rabattreduktion_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="garantie" nolabel="1" string="Show Garantie"/>
-                                <strong><field name="garantie_sep" nolabel="1"/></strong>
+                                <field name="garantie_sep" nolabel="1 "/>
                             </div>
-                            <field name="garantie_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>
-                            <field name="garantie_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}" colspan="4"/>                             
+                            <field name="garantie_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>
+                            <field name="garantie_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>                             
                             <div class="o_row" colspan="6">
                                 <field name="garantie_wiederverkaufer" nolabel="1" string="Show Garantie Wiederverkäufer"/>
-                                <strong><field name="garantie_wiederverkaufer_sep" nolabel="1"/></strong>
+                                <field name="garantie_wiederverkaufer_sep" nolabel="1"/>
                             </div>
-                            <field name="garantie_wiederverkaufer_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
-                            <field name="garantie_wiederverkaufer_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}" colspan="4"/>
+                            <field name="garantie_wiederverkaufer_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
+                            <field name="garantie_wiederverkaufer_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
                             <field name="remove_order_existing_line"/>
                         </group>
                     </group>
@@ -149,79 +151,81 @@
                         <group>
                             <field name="x_studio_lieferfrist" string="Lieferfrist"/>
                             <div class="o_row" colspan="6">
-                                <field name="termin" nolabel="1" string="Show Termin"/>
-                                <strong><field name="termin_sep" nolabel="1"/></strong>
+                                <field name="termin" nolabel="1"/>
+                                <field name="termin_sep" nolabel="1"/>
                             </div>
-                            <field name="termin_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}"/>
-                            <field name="termin_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}" colspan="4"/>
+                            <field name="termin_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}"/>
+                            <field name="termin_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}"/>
+
+
                             <div class="o_row" colspan="6">
                                 <field name="abholung" nolabel="1" string="Show Abholung"/>
-                                <strong><field name="abholung_sep" nolabel="1"/></strong>
+                                <field name="abholung_sep" nolabel="1 "/>
                             </div>
-                            <field name="abholung_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}"/>
-                            <field name="abholung_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}" colspan="4"/>
+                            <field name="abholung_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}"/>
+                            <field name="abholung_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="preise_sonderfarben" nolabel="1" string="Show Preise Sonderfarben"/>
-                                <strong><field name="preise_sonderfarben_sep" nolabel="1"/></strong>
+                                <field name="preise_sonderfarben_sep"  nolabel="1"/>
                             </div>
-                            <field name="preise_sonderfarben_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}"/>
-                            <field name="preise_sonderfarben_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}" colspan="4"/>
+                            <field name="preise_sonderfarben_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}"/>
+                            <field name="preise_sonderfarben_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="x_studio_preise_inkl_montage" nolabel="1" string="Show Preise inkl. Montage"/>
-                                <strong><field name="preise_inkl_montage_sep" nolabel="1"/></strong>
+                                <field name="preise_inkl_montage_sep"  nolabel="1"/>
                             </div>
-                            <field name="preise_inkl_montage_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}"/>
-                            <field name="preise_inkl_montage_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}" colspan="4"/>
+                            <field name="preise_inkl_montage_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}"/>
+                            <field name="preise_inkl_montage_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="preise_exkl_montage" nolabel="1" string="Show Preise exkl. Montage"/>
-                                <strong><field name="preise_exkl_montage_sep" nolabel="1"/></strong>
+                                <field name="preise_exkl_montage_sep"  nolabel="1"/>
                             </div>
-                            <field name="preise_exkl_montage_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}"/>
-                            <field name="preise_exkl_montage_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}" colspan="4"/>
+                            <field name="preise_exkl_montage_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}"/>
+                            <field name="preise_exkl_montage_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}"/>
                         </group>
                         <group>
                             <div class="o_row" colspan="6">
                                 <field name="rabatt_5" nolabel="1"/>
-                                <strong><field name="rabatt_5_sep" nolabel="1"/></strong>
+                                <field name="rabatt_5_sep" nolabel="1 "/>
                             </div>
-                            <field name="rabatt_5_label" placeholder="Report label..." nolabel="1" attrs="{'invisible': [('rabatt_5', '=', False)]}"/>
-                            <field name="rabatt_5_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('rabatt_5', '=', False)]}" colspan="4"/>
+                            <field name="rabatt_5_label" placeholder="Report label..." colspan="8" nolabel="1" attrs="{'invisible': [('rabatt_5', '=', False)]}"/>
+                            <field name="rabatt_5_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_5', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="rabatt_10" nolabel="1" string="Show Rabatt 5%"/>
-                                <strong><field name="rabatt_10_sep" nolabel="1"/></strong>
+                                <field name="rabatt_10_sep" nolabel=" 1"/>
                             </div>
-                            <field name="rabatt_10_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}"/>
-                            <field name="rabatt_10_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}" colspan="4"/>
+                            <field name="rabatt_10_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}"/>
+                            <field name="rabatt_10_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="rabatt_40" nolabel="1" string="Show Rabatt 40%"/>
-                                <strong><field name="rabatt_40_sep" nolabel="1"/></strong>
+                                <field name="rabatt_40_sep" nolabel=" 1"/>
                             </div>
-                            <field name="rabatt_40_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}"/>
-                            <field name="rabatt_40_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}" colspan="4"/>
+                            <field name="rabatt_40_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}"/>
+                            <field name="rabatt_40_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="rabatt_u" nolabel="1" string="Show Rabatt U"/>
-                                <strong><field name="rabatt_u_sep" nolabel="1"/></strong>
+                                <field name="rabatt_u_sep" nolabel="1 "/>
                             </div>
-                            <field name="rabatt_u_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}"/>
-                            <field name="rabatt_u_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}" colspan="4"/>
+                            <field name="rabatt_u_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}"/>
+                            <field name="rabatt_u_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="rabattreduktion" nolabel="1" string="Show Rabatt Reduktion"/>
-                                <strong><field name="rabattreduktion_sep" nolabel="1"/></strong>
+                                <field name="rabattreduktion_sep" nolabel="1"/>
                             </div>
-                            <field name="rabattreduktion_label"  placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}"/>
-                            <field name="rabattreduktion_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}" colspan="4"/>
+                            <field name="rabattreduktion_label"  placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}"/>
+                            <field name="rabattreduktion_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}"/>
                             <div class="o_row" colspan="6">
                                 <field name="garantie" nolabel="1" string="Show Garantie"/>
-                                <strong><field name="garantie_sep" nolabel="1"/></strong>
+                                <field name="garantie_sep" nolabel="1 "/>
                             </div>
-                            <field name="garantie_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>
-                            <field name="garantie_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}" colspan="4"/>                             
+                            <field name="garantie_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>
+                            <field name="garantie_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>                             
                             <div class="o_row" colspan="6">
                                 <field name="garantie_wiederverkaufer" nolabel="1" string="Show Garantie Wiederverkäufer"/>
-                                <strong><field name="garantie_wiederverkaufer_sep" nolabel="1"/></strong>
+                                <field name="garantie_wiederverkaufer_sep" nolabel="1"/>
                             </div>
-                            <field name="garantie_wiederverkaufer_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
-                            <field name="garantie_wiederverkaufer_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}" colspan="4"/>
+                            <field name="garantie_wiederverkaufer_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
+                            <field name="garantie_wiederverkaufer_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
                         </group>
                     </group>
                     <group>

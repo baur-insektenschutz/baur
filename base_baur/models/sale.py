@@ -564,6 +564,10 @@ class AccountMove(models.Model):
     freier_text_block_id = fields.Many2one('text.blocks', 'Freier Text Block')
     freier_text = fields.Html('Freier Text')
 
+    payment_communication = fields.Boolean(string="Show Payment Communication")
+    payment_communication_sep = fields.Char(string="Payment Communication", default="Payment Communication")
+    payment_communication_text = fields.Text(string="Show Payment Communication Text", default="Bitte benutzen Sie den beigefügten QR-Einzahlungsschein für Ihre Zahlung:")
+
     @api.onchange('freier_text_block_id')
     def onchange_freier_text_block_id(self):
         if self.freier_text_block_id:

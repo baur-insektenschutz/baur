@@ -18,20 +18,32 @@
            	<xpath expr="//notebook//page[last()]" position="after">
                 <page name="page_konditionen" string="Baur Konditionen">
                     <group>
-                    	<group>
-                            <div class="o_row" colspan="6">
-                                <field name="garantie" nolabel="1" string="Show Garantie"/>
-                                <strong><field name="garantie_sep" nolabel="1"/></strong>
+                        <group>
+                            <div class="o_row" colspan="4">
+                                <field name="garantie" nolabel="1"/>
+                                <field name="garantie_sep" nolabel="1"/>
                             </div>
-                            <field name="garantie_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>
-                            <field name="garantie_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}" colspan="4"/>                             
-                            <div class="o_row" colspan="6">
-                                <field name="garantie_wiederverkaufer" nolabel="1" string="Show Garantie Wiederverkäufer"/>
-                                <strong><field name="garantie_wiederverkaufer_sep" nolabel="1"/></strong>
-                            </div>
-                            <field name="garantie_wiederverkaufer_label" placeholder="Report label..." nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
-                            <field name="garantie_wiederverkaufer_text" placeholder="Report text..." nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}" colspan="4"/>
+                            <field name="garantie_label" attrs="{'invisible': [('garantie', '=', False)]}" placeholder="Report label..." colspan="8" nolabel="1"/>
+                            <field name="garantie_text" attrs="{'invisible': [('garantie', '=', False)]}" placeholder="Report text..." colspan="8" nolabel="1"/>
                         </group>
+
+                        <group>
+                            <div class="o_row" colspan="4">
+                                <field name="garantie_wiederverkaufer" nolabel="1"/>
+                                <field name="garantie_wiederverkaufer_sep" nolabel="1"/>
+                            </div>
+                            <field name="garantie_wiederverkaufer_label" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}" placeholder="Report label..." colspan="8" nolabel="1"/>
+                            <field name="garantie_wiederverkaufer_text" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}" placeholder="Report text..." colspan="8" nolabel="1"/>
+                        </group>
+
+                        <group>
+                            <div class="o_row" colspan="4">
+                                <field name="payment_communication" nolabel="1"/>
+                                <field name="payment_communication_sep" nolabel="1"/>
+                            </div>
+                            <field name="payment_communication_text" colspan="8" nolabel="1"/>
+                        </group>
+
                     </group>
                     <group>
                         <field name="freier_text_block_id" string="Freier Text Block" no_create_edit="1" />
