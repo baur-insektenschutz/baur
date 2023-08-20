@@ -114,12 +114,12 @@
                 </div>
                 <div class="row mb-4" t-if="doc.x_studio_ausmessen_liefern_und_montieren">
                     <div class="col">
-                        <span class="">Ausmessen, liefern und montieren:</span>
+                        <span t-esc="doc.ausmessen_liefern_und_montieren_text"/>
                     </div>
                 </div>
                 <div class="row mb-4" t-if="doc.x_studio_reparieren_ersetzen_von">
                     <div class="col">
-                        <span class="">Reparieren oder Ersatz von:</span>
+                        <span t-esc="doc.reparieren_ersetzen_von_text"/>
                     </div>
                 </div>
             </xpath>
@@ -158,26 +158,26 @@
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.preise_sonderfarben">
                                 <td width="21%" class="p-0">
-                                    <p class="mb-1"><span>Preise<br/>Sonderfarben:</span></p>
+                                    <p class="mb-1"><span t-esc="doc.preise_sonderfarben_label"/></p>
                                 </td>
                                 <td width="79%" class="p-0">
-                                    <p style="margin-top:1.5em;" class="mb-1"><span> gültig 4 Wochen</span></p>
+                                    <p style="margin-top:1.5em;" class="mb-1"><span t-esc="doc.preise_sonderfarben_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1em;" t-if="doc.x_studio_preise_inkl_montage">
                                 <td width="21%" class="p-0">
-                                    <p class="mb-1"><span>Preise:</span></p>
+                                    <p class="mb-1"><span t-esc="doc.preise_inkl_montage_label"/></p>
                                 </td>
                                 <td width="79%" class="p-0">
-                                    <p class="mb-1"><span> inkl. Montage</span></p>
+                                    <p class="mb-1"><span t-esc="doc.preise_inkl_montage_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1em;" t-if="doc.preise_exkl_montage">
                                 <td width="21%" class="p-0">
-                                    <p class="mb-1"><span>Preise:</span></p>
+                                    <p class="mb-1"><span t-esc="doc.preise_exkl_montage_label"/></p>
                                 </td>
                                 <td width="79%" class="p-0">
-                                    <p class="mb-1"><span> exkl. Montage</span></p>
+                                    <p class="mb-1"><span t-esc="doc.preise_exkl_montage_text"/></p>
                                 </td>
                             </tr>
                         </table>
@@ -192,78 +192,78 @@
                             </tr>
                             <tr style="line-height:0em;" t-if="doc.termin">
                                 <td class="p-0" width="21%">
-                                    <p><span>Termin:</span></p>
+                                    <p><span t-esc="doc.termin_label"/></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p><span> nach Vereinbarung</span></p>
+                                    <p><span t-esc="doc.termin_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:0em;" t-if="doc.abholung">
                                 <td class="p-0" width="21%">
-                                    <p><span>Abholung:</span></p>
+                                    <p><span t-esc="doc.abholung_label"/></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p><span> ab Werkstatt, Uttigen</span></p>
+                                    <p><span t-esc="doc.abholung_text"/></p>
                                 </td>
                             </tr>
                         </table>
                         <table class="table table-borderless table-sm" t-if="doc.rabatt_5 or doc.rabatt_10 or doc.rabatt_40 or doc.rabatt_u or doc.rabattreduktion">
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_5">
                                 <td class="p-0" width="21%">
-                                    <p class="mb-1"><span>Rabatt:</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_5_label"/></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> 5% ab einem Bestellwert von CHF 2'000.- exkl. Sonderfarben und exkl. Reparaturen</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_5_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_10">
                                 <td class="p-0" width="21%">
-                                    <p class="mb-1"><span>Rabatt:</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_10_label"/></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> 10% ab einem Bestellwert von CHF 3'000.- exkl. Sonderfarben und exkl. Reparaturen</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_10_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_40">
                                 <td class="p-0" width="21%">
-                                    <p class="mb-1"><span>Rabatt:</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_40_label"/></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> 40% Wiederverkaufsrabatt exkl. Sonderfarben und exkl. Montage/Reparatur</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_40_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabatt_u">
                                 <td class="p-0" width="21%">
-                                    <p class="mb-1"><span>Rabatt:</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_u_label"/></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> 5% Uttiger Rabatt bereits in Abzug gebracht</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabatt_u_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.rabattreduktion">
                                 <td class="p-0" width="21%">
-                                    <p class="mb-1"><span>Rabatt-<br/>Reduktion:</span></p>
+                                    <p class="mb-1"><span t-esc="doc.rabattreduktion_label"/></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p><span> Wird ein zweites Ausmass erforderlich, kann sich der Mengenrabatt reduzieren oder entfällt ganz</span></p>
+                                    <p><span t-esc="doc.rabattreduktion_text"/></p>
                                 </td>
                             </tr>
                         </table>
                         <table class="table table-borderless table-sm" style="line-height:1.5em;" t-if="doc.garantie or doc.garantie_wiederverkaufer">
                             <tr style="line-height:1.5em;" t-if="doc.garantie">
                                 <td class="p-0" width="21%">
-                                    <p class="mb-1"><span>Garantie:</span></p>
+                                    <p class="mb-1"><span t-esc="doc.garantie_label"/></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <p class="mb-1"><span> 3 Jahre Garantie auf Material (exkl. auf Gewebe)</span></p>
+                                    <p class="mb-1"><span t-esc="doc.garantie_text"/></p>
                                 </td>
                             </tr>
                             <tr style="line-height:1.5em;" t-if="doc.garantie_wiederverkaufer">
                                 <td class="p-0" width="21%">
-                                    <p class="mb-1"><span>Garantie:</span></p>
+                                    <p class="mb-1"><span t-esc="doc.garantie_wiederverkaufer_label"/></p>
                                 </td>
                                 <td class="p-0" width="79%">
-                                    <span class="mb-1"><span> 3 Jahre Garantie auf Produkte (exkl. auf Gewebe)<br/>Schäden durch unsachgemässe Montage sind nicht garantieberechtigt</span></span>
+                                    <span class="mb-1"><span t-esc="doc.garantie_wiederverkaufer_text"/></span>
                                 </td>
                             </tr>
                         </table>
