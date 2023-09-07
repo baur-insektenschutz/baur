@@ -6,7 +6,7 @@
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
             <field name="order_line" position="before">
-                <field name="max_line_sequence" invisible="0" />
+                <field name="max_line_sequence" invisible="1" />
             </field>
            <!--  <field name="order_line" position="attributes">
                 <attribute
@@ -33,10 +33,19 @@
         <field name="model">add.section</field>
         <field name="arch" type="xml">
             <form string="Add Section">
-                <group col="4" colspan="6">
-                    <field name="order_id" invisible="0"/>
-                    <field name="seq"/>
-                    <field name="product_id"/>
+                <group>
+                    <group>
+                        <field name="display_type" widget="radio" options="{'horizontal': true}"/>
+                        <field name="product_id" attrs="{'invisible':[('display_type','in',('section','note'))], 'required':[('display_type','=','product')]}" />
+                        <field name="section" attrs="{'invisible':[('display_type','in',('product','note'))],'required':[('display_type','=','section')]}" />
+                        <field name="note" attrs="{'invisible':[('display_type','in',('section','product'))],'required':[('display_type','=','note')]}"/>
+                    </group>
+
+                    <group>
+
+                        <field name="seq" invisible="1"/>
+                        <field name="order_id" invisible="1"/>
+                    </group>
                 </group>
                 <footer>
                     <button name="add_line" string="Add" type="object" class="btn-primary"/>

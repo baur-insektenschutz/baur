@@ -10,7 +10,9 @@
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
-    "data": ["views/sale_view.xml", "views/report_saleorder.xml"],
+    "data": ["views/sale_view.xml", 
+    #"views/report_saleorder.xml"
+    ],
     "depends": ["sale"],
     "post_init_hook": "post_init_hook",
     "installable": True,
