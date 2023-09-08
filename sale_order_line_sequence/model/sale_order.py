@@ -62,15 +62,23 @@ class AddSection(models.TransientModel):
 
     order_id = fields.Many2one("sale.order", string="Order")
     product_id = fields.Many2one("product.product", string="Product")
+    display_type = fields.Selection([('product','Product'),('section','Section'),('note','Note')], default="product")
+    section = fields.Char(string="Section")
+    note = fields.Char(string="Note")
     seq = fields.Integer()
 
     def add_line(self):
         if self.env.context.get('active_id'):
-            line = self.env['sale.order.line'].create({'product_id': self.product_id.id,'name':'aaa','order_id':self.order_id.id,'sequence2':self.seq})
-            line.product_id_change()
-            next_lines = self.env['sale.order.line'].search([('order_id','=',self.order_id.id),('sequence','>',self.seq),('sequence','<',self.seq+999)])
-            for ll in next_lines:
-                ll.sequence2 = self.seq+1
+            if self.display_type == 'product':
+                line = self.env['sale.order.line'].create({'product_id': self.product_id.id,'name':'aaa','order_id':self.order_id.id,'sequence2':self.seq})
+                line.product_id_change()
+                next_lines = self.env['sale.order.line'].search([('order_id','=',self.order_id.id),('sequence','>',self.seq),('sequence','<',self.seq+999)])
+                for ll in next_lines:
+                    ll.sequence2 = self.seq+1
+            if self.display_type == 'section':
+                line = self.env['sale.order.line'].create({'name':self.section,'order_id':self.order_id.id,'display_type':'line_section','sequence2':self.seq-1})
+            if self.display_type == 'note':
+                line = self.env['sale.order.line'].create({'name':self.note,'order_id':self.order_id.id,'display_type':'line_note','sequence2':self.seq-1})
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
