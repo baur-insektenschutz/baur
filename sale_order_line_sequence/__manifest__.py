@@ -10,7 +10,9 @@
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
-    "data": ["views/sale_view.xml", 
+    "data": [
+    "security/ir.model.access.csv",
+    "views/sale_view.xml", 
     #"views/report_saleorder.xml"
     ],
     "depends": ["sale"],

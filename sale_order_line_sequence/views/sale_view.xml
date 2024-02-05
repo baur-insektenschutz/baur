@@ -23,7 +23,13 @@
                 <field name="order_id" invisible="1"/>
                 <field name="section_id" optional="hide" domain="[('display_type', '=', 'line_section'), ('order_id', '=', order_id)]" />
                 <field name="sequence2" optional="hide" attrs="{'invisible':[('display_type','in',('line_section','line_note'))]}" string="Seqence"/>
-                
+            </xpath>
+            <xpath expr="//field[@name='order_line']//form//field[@name='display_type']" position="after">
+                <field name="create_uid" invisible="1" />
+                <label for="sequence2" attrs="{'invisible': [('create_uid', '=', False)]}" string="Sequence"/>
+                <field name="sequence2" attrs="{'invisible': [('create_uid', '=', False)]}"/>
+                <label for="section_id" string="Section" attrs="{'invisible': [('display_type', '=', 'line_section')]}"/>
+                <field name="section_id" attrs="{'invisible': [('display_type', '=', 'line_section')]}" domain="[('display_type', '=', 'line_section'), ('order_id', '=', parent.id)]"/>
             </xpath>
         </field>
     </record>
