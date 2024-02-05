@@ -45,11 +45,10 @@ class SaleOrder(models.Model):
     #         seq+=1
     #     return super(SaleOrder, self).create(line_values)
 
-    def write(self, line_values):
-        res = super(SaleOrder, self).write(line_values)
-        if not line_values['sequence2']:
-            self._reset_sequence()
-        return res
+    # def write(self, line_values):
+    #     res = super(SaleOrder, self).write(line_values)
+    #     self._reset_sequence()
+    #     return res
 
     def copy(self, default=None):
         return super(SaleOrder, self.with_context(keep_line_sequence=True)).copy(
