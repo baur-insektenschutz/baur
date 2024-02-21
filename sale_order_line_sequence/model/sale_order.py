@@ -48,6 +48,41 @@ class SaleOrder(models.Model):
             default
         )
 
+    def action_add_section_btn(self):
+        return {
+            'name': _('Add Section'),
+            'view_type': 'form',
+            "view_mode": 'form',
+            'res_model': 'add.section',
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+            'domain': [('display_type', '=', 'section')],
+            'context': {
+                'default_order_id': self.id,
+                'default_display_type': 'section',
+                'default_hide_display_type': True,
+                'default_seq':self.order_line and self.order_line[-1].sequence2+1 or 1000
+            }
+        }
+
+    def action_add_note_btn(self):
+        return {
+            'name': _('Add Section'),
+            'view_type': 'form',
+            "view_mode": 'form',
+            'res_model': 'add.section',
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+            'domain': [('display_type', '=', 'note')],
+            'context': {
+                'default_order_id': self.id,
+                'default_display_type': 'note',
+                'default_hide_display_type': True,
+                'default_seq':self.order_line and self.order_line[-1].sequence2+1 or 1
+            }
+        }
+
+
 
 class AddSection(models.TransientModel):
     _name = 'add.section'
@@ -56,9 +91,20 @@ class AddSection(models.TransientModel):
     order_id = fields.Many2one("sale.order", string="Order")
     product_id = fields.Many2one("product.product", string="Product")
     display_type = fields.Selection([('product','Product'),('section','Section'),('note','Note')], default="product")
+    hide_display_type = fields.Boolean(string='Hide Display Type', default=False)
     section = fields.Char(string="Section")
     note = fields.Char(string="Note")
     seq = fields.Integer()
+    md_section_list = fields.Many2many("sale.order.line", "rel_sec_order", 'sec_id', 'line_id', string="Section List")
+
+    def default_get(self, fields_list):
+        res = super(AddSection, self).default_get(fields_list)
+        all_sections = self.env['sale.order.line'].search([
+            ('display_type', '=', 'line_section'), ('order_id', '=', self.env.context.get('active_id'))
+        ])
+        res['md_section_list'] = [(6, 0, all_sections.ids)]
+        return res
+
 
     def add_line(self):
         if self.env.context.get('active_id'):
@@ -113,4 +159,4 @@ class SaleOrderLine(models.Model):
             'target': 'new',
             'domain':[('display_type', '=', 'line_section'), ('order_id', '=', self.order_id)],
             'context': {'default_order_id': self.order_id.id,'default_seq':self.sequence2+1}
-        }        
+        }
