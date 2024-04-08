@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <template id="base_baur_report_invoice_document_inherit" inherit_id="account.report_invoice_document">
-        <xpath expr="//t[@t-set='address']" position="before">
-                <div class="row address" style="margin-top:-40px;">
-                    <div class="col-4"><img class="img-fluid" src="/web/image/644-2ae27e1e/baur_logo_sz.png" style="width:100px;"/></div>
+        <xpath expr="//div[@name='address_same_as_shipping']/../.." position="replace">
+                <div class="row address">
+                    <div class="col-4"><img class="img-fluid" src="/base_baur/static/description/icon.png" style="width:100px;"/></div>
                     <div class="col-4" style="line-height: 1.2;"><span>
                             <p><span style="font-weight:bold;">BAUR Insektenschutz AG</span><br/>Eichenweg 11<br/>3628 Uttigen<br/></p>
                         </span></div>
@@ -11,14 +11,14 @@
                         <p>Tel.        033 345 07 77<br/>Mail       info@baur-uttigen.ch<br/>Web      www.baur-uttigen.ch<br/>MWST  CHE-279.642.932 MWST</p>
                     </div>
                 </div>
-                <br/>
-                <br/>
+                <!-- <br/>
+                <br/> -->
                 <div class="row address">
-                      
-                      <div class="col-3" style="line-height: 1.2;font-family: Roboto; font-size: 12px;">
+                    <div class="col-3" style="line-height: 1.2;font-family: Roboto; font-size: 12px;">
                         <br/>
                         <br/>
                         <t t-if="o.x_studio_lieferadresse_drucken and o.partner_shipping_id">
+                        <t t-if="o.partner_shipping_id">
                             <span><strong>Lieferadresse:</strong></span><br/>
                             <t t-if="o.partner_shipping_id.name"><span t-field="o.partner_shipping_id.name"/><br/></t>
                             <t t-if="not o.partner_shipping_id.name"><span t-field="o.partner_shipping_id.parent_id.name"/><br/></t>
@@ -30,6 +30,7 @@
                             <t t-if="o.partner_shipping_id.state_id.name"><span t-field="o.partner_shipping_id.state_id.name"/></t>
                             <t t-if="o.partner_shipping_id.city"><span t-field="o.partner_shipping_id.city"/><br/></t>
                         </t>
+                    </t>
                     </div>
                     <div class="col-3" style="line-height: 1.2;font-family: Roboto; font-size: 12px;">
                     </div>
@@ -38,7 +39,7 @@
                     <div class="col-5">
                       <br/>
 
-                        <!--<div t-field="doc.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'mobile','x_studio_name2']"/>-->
+                        <!-- <div t-field="doc.partner_id" t-options-widget="'contact'" t-options-fields="['name', 'address', 'phone', 'mobile','x_studio_name2']"/> -->
                         <t t-if="o.partner_id.name"><span t-field="o.partner_id.name"/><br/></t>
                         <t t-if="not o.partner_id.name"><span t-field="o.partner_id.parent_id.name"/><br/></t>
                         <t t-if="o.partner_id.x_studio_name2"><span t-field="o.partner_id.x_studio_name2"/><br/></t>
@@ -48,7 +49,7 @@
                         <t t-if="o.partner_id.zip"><span t-field="o.partner_id.zip"/></t>
                         <t t-if="o.partner_id.state_id.name"><span t-field="o.partner_id.state_id.name"/></t>
                         <t t-if="o.partner_id.city"><span t-field="o.partner_id.city"/><br/></t>
-                        <!--<t t-if="o.partner_id.country_id.name"><span t-field="o.partner_id.country_id.name"/><br/></t>-->
+                        <!-- <t t-if="o.partner_id.country_id.name"><span t-field="o.partner_id.country_id.name"/><br/></t> -->
                     </div>
                 </div>
             </xpath>
@@ -80,9 +81,12 @@
                 </div>
             </xpath>
             <xpath expr="//span[@t-field='o.invoice_payment_term_id.note']" position="replace"/>
-            <xpath expr="//div[@class='clearfix']//div[@id='total']" position="replace">
+            <xpath expr="//div[@id='right-elements']" position="attributes">
+                <attribute name="t-attf-class">#{'col-12' if report_type != 'html' else 'col-12 col-md-12'} ms-5 d-inline-block float-end</attribute>
+            </xpath>
+            <xpath expr="//div[@id='right-elements']//div[@id='total']" position="replace">
                 <div id="total" class="row" name="total">
-                    <div class="" style="width:49%;margin-left:17px;font-family: Roboto; font-size: 13.3333px;">
+                    <div class="col-8" style="font-family: Roboto; font-size: 13.3333px;">
                         <table class="table table-borderless table-sm" t-attf-style="margin-top: #{15 if o.invoice_line_ids else 0}%">
                             <tr>
                                 <td class="pl-0">
@@ -118,31 +122,31 @@
                             </div>
                         </table>
                     </div>
-                    <div style="width:47%">
+                    <div class="col-4" style="">
                         <table class="table table-sm" style="page-break-inside: avoid;">
                             <!--Tax totals-->
-                            <t t-set="tax_totals" t-value="json.loads(o.tax_totals_json)"/>
+                            <t t-set="tax_totals" t-value="o.tax_totals"/>
                             <t t-call="account.document_tax_totals"/>
 
                             <!--Payments-->
                             <t t-if="print_with_payments">
                                 <t t-if="o.payment_state != 'invoicing_legacy'">
-                                    <t t-set="payments_vals" t-value="o.sudo()._get_reconciled_info_JSON_values()"/>
+                                    <t t-set="payments_vals" t-value="o.sudo().invoice_payments_widget and o.sudo().invoice_payments_widget['content'] or []"/>
                                     <t t-foreach="payments_vals" t-as="payment_vals">
-                                        <tr>
+                                        <tr t-if="payment_vals['is_exchange'] == 0">
                                             <td>
-                                                <i class="oe_form_field text-right oe_payment_label">Paid on <t t-esc="payment_vals['date']" t-options="{&quot;widget&quot;: &quot;date&quot;}"/></i>
+                                                <i class="oe_form_field text-end oe_payment_label">Paid on <t t-out="payment_vals['date']" t-options='{"widget": "date"}'>2021-09-19</t></i>
                                             </td>
-                                            <td class="text-right">
-                                                <span t-esc="payment_vals['amount']" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                            <td class="text-end">
+                                                <span t-out="payment_vals['amount']" t-options='{"widget": "monetary", "display_currency": o.currency_id}'>20.00</span>
                                             </td>
                                         </tr>
                                     </t>
-                                    <t t-if="len(payments_vals) &gt; 0">
-                                        <tr class="border-black">
-                                            <td><strong>Amount Due</strong></td>
-                                            <td class="text-right">
-                                                <span t-field="o.amount_residual"/>
+                                    <t t-if="len(payments_vals) > 0">
+                                        <tr class="border-black fw-bold">
+                                            <td>Amount Due</td>
+                                            <td class="text-end">
+                                                <span t-field="o.amount_residual">11.05</span>
                                             </td>
                                         </tr>
                                     </t>
@@ -194,5 +198,6 @@
                     <span t-field="o.payment_communication_text"/>
               </p>
             </xpath>
+            
  	</template>
 </odoo>

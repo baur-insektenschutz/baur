@@ -5,14 +5,12 @@
 {
     "name": "Sale Order Line Sequence",
     "summary": "Propagates SO line sequence to invoices and stock picking.",
-    "version": "15.0.1.0.0",
+    "version": "17.0",
     "author": "ForgeFlow, Serpent CS, Odoo Community Association (OCA)",
     "category": "Sales",
     "website": "https://github.com/OCA/sale-workflow",
     "license": "AGPL-3",
-    "data": [
-    "security/ir.model.access.csv",
-    "views/sale_view.xml", 
+    "data": ["views/sale_view.xml", 
     #"views/report_saleorder.xml"
     ],
     "depends": ["sale"],

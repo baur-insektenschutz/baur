@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="account_payment_term_form" model="ir.ui.view">
+        <field name="name">account.payment.term.form</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//separator" position='before'>
+                 <label for="display_terms"/>
+                <field name="display_terms" />
+            </xpath>
+            <xpath expr="//field[@name='line_ids']" position="after">
+                 <div class="oe_edit_only">
+                    <separator string="Example"/>
+                    <field name="example_invalid" invisible="1"/>
+                    <div attrs="{'invisible': [('example_invalid', '=', False)]}">
+                        The Payment Term must have one Balance line.
+                    </div>
+                    <div attrs="{'invisible': [('example_invalid', '=', True)]}" class="d-flex">
+                        For any invoice of
+                        <span class="mx-1"/> <field name="example_amount"/> <span class="mx-1"/>
+                        dated
+                        <span class="mx-1"/> <field name="example_date" class="oe_inline" style="color: #704A66; font-weight: bold"/>,
+                        the due date(s) and amount(s) will be:
+                    </div>
+                    <field name="example_preview" attrs="{'invisible': [('example_invalid', '=', True)]}"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    <record id="base_baur_sale_order_template_view_form" model="ir.ui.view">
+        <field name="name">base.baur.sale.order.template.view.form</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+        <field name="model">sale.order.template</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='number_of_days']" position="after">
+                <field name="pricelist_id"/>
+
+
+                <div class="o_row" colspan="6">
+                    <field name="ausmessen_liefern_und_montieren" nolabel="1"/>
+                    <field name="ausmessen_liefern_und_montieren_text"/>
+                </div>
+                <div class="o_row" colspan="6">
+                    <field name="reparieren_ersetzen_von" nolabel="1"/>
+                    <field name="reparieren_ersetzen_von_text"/>
+                </div>
+                
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page name="page_konditionen" string="Baur Konditionen">
+                    <group>
+                        <group>
+                            <field name="x_studio_lieferfrist" string="Lieferfrist"/>
+                            <div class="o_row" colspan="6">
+                                <field name="termin" nolabel="1"/>
+                                <field name="termin_sep" nolabel="1"/>
+                            </div>
+                            <field name="termin_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}"/>
+                            <field name="termin_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}"/>
+
+
+                            <div class="o_row" colspan="6">
+                                <field name="abholung" nolabel="1" string="Show Abholung"/>
+                                <field name="abholung_sep" nolabel="1 "/>
+                            </div>
+                            <field name="abholung_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}"/>
+                            <field name="abholung_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="preise_sonderfarben" nolabel="1" string="Show Preise Sonderfarben"/>
+                                <field name="preise_sonderfarben_sep"  nolabel="1"/>
+                            </div>
+                            <field name="preise_sonderfarben_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}"/>
+                            <field name="preise_sonderfarben_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="x_studio_preise_inkl_montage" nolabel="1" string="Show Preise inkl. Montage"/>
+                                <field name="preise_inkl_montage_sep"  nolabel="1"/>
+                            </div>
+                            <field name="preise_inkl_montage_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}"/>
+                            <field name="preise_inkl_montage_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="preise_exkl_montage" nolabel="1" string="Show Preise exkl. Montage"/>
+                                <field name="preise_exkl_montage_sep"  nolabel="1"/>
+                            </div>
+                            <field name="preise_exkl_montage_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}"/>
+                            <field name="preise_exkl_montage_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_5" nolabel="1"/>
+                                <field name="rabatt_5_sep" nolabel="1 "/>
+                            </div>
+                            <field name="rabatt_5_label" placeholder="Report label..." colspan="8" nolabel="1" attrs="{'invisible': [('rabatt_5', '=', False)]}"/>
+                            <field name="rabatt_5_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_5', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_10" nolabel="1" string="Show Rabatt 5%"/>
+                                <field name="rabatt_10_sep" nolabel=" 1"/>
+                            </div>
+                            <field name="rabatt_10_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}"/>
+                            <field name="rabatt_10_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_40" nolabel="1" string="Show Rabatt 40%"/>
+                                <field name="rabatt_40_sep" nolabel=" 1"/>
+                            </div>
+                            <field name="rabatt_40_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}"/>
+                            <field name="rabatt_40_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_u" nolabel="1" string="Show Rabatt U"/>
+                                <field name="rabatt_u_sep" nolabel="1 "/>
+                            </div>
+                            <field name="rabatt_u_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}"/>
+                            <field name="rabatt_u_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabattreduktion" nolabel="1" string="Show Rabatt Reduktion"/>
+                                <field name="rabattreduktion_sep" nolabel="1"/>
+                            </div>
+                            <field name="rabattreduktion_label"  placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}"/>
+                            <field name="rabattreduktion_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="garantie" nolabel="1" string="Show Garantie"/>
+                                <field name="garantie_sep" nolabel="1 "/>
+                            </div>
+                            <field name="garantie_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>
+                            <field name="garantie_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>                             
+                            <div class="o_row" colspan="6">
+                                <field name="garantie_wiederverkaufer" nolabel="1" string="Show Garantie Wiederverkäufer"/>
+                                <field name="garantie_wiederverkaufer_sep" nolabel="1"/>
+                            </div>
+                            <field name="garantie_wiederverkaufer_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
+                            <field name="garantie_wiederverkaufer_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
+                            <field name="remove_order_existing_line"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="freier_text_block_id" string="Freier Text Block" no_create_edit="1" />
+                        <field name="freier_text" string="Freier Text"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="base_baur_view_order_form" model="ir.ui.view">
+        <field name="name">base.baur.view.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook//page[last()]" position="after">
+                <page name="page_konditionen" string="Baur Konditionen">
+                    <group>
+                        <group>
+                            <field name="x_studio_lieferfrist" string="Lieferfrist"/>
+                            <div class="o_row" colspan="6">
+                                <field name="termin" nolabel="1"/>
+                                <field name="termin_sep" nolabel="1"/>
+                            </div>
+                            <field name="termin_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}"/>
+                            <field name="termin_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('termin', '=', False)]}"/>
+
+
+                            <div class="o_row" colspan="6">
+                                <field name="abholung" nolabel="1" string="Show Abholung"/>
+                                <field name="abholung_sep" nolabel="1 "/>
+                            </div>
+                            <field name="abholung_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}"/>
+                            <field name="abholung_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('abholung', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="preise_sonderfarben" nolabel="1" string="Show Preise Sonderfarben"/>
+                                <field name="preise_sonderfarben_sep"  nolabel="1"/>
+                            </div>
+                            <field name="preise_sonderfarben_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}"/>
+                            <field name="preise_sonderfarben_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_sonderfarben', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="x_studio_preise_inkl_montage" nolabel="1" string="Show Preise inkl. Montage"/>
+                                <field name="preise_inkl_montage_sep"  nolabel="1"/>
+                            </div>
+                            <field name="preise_inkl_montage_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}"/>
+                            <field name="preise_inkl_montage_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('x_studio_preise_inkl_montage', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="preise_exkl_montage" nolabel="1" string="Show Preise exkl. Montage"/>
+                                <field name="preise_exkl_montage_sep"  nolabel="1"/>
+                            </div>
+                            <field name="preise_exkl_montage_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}"/>
+                            <field name="preise_exkl_montage_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('preise_exkl_montage', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_5" nolabel="1"/>
+                                <field name="rabatt_5_sep" nolabel="1 "/>
+                            </div>
+                            <field name="rabatt_5_label" placeholder="Report label..." colspan="8" nolabel="1" attrs="{'invisible': [('rabatt_5', '=', False)]}"/>
+                            <field name="rabatt_5_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_5', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_10" nolabel="1" string="Show Rabatt 5%"/>
+                                <field name="rabatt_10_sep" nolabel=" 1"/>
+                            </div>
+                            <field name="rabatt_10_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}"/>
+                            <field name="rabatt_10_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_10', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_40" nolabel="1" string="Show Rabatt 40%"/>
+                                <field name="rabatt_40_sep" nolabel=" 1"/>
+                            </div>
+                            <field name="rabatt_40_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}"/>
+                            <field name="rabatt_40_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_40', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabatt_u" nolabel="1" string="Show Rabatt U"/>
+                                <field name="rabatt_u_sep" nolabel="1 "/>
+                            </div>
+                            <field name="rabatt_u_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}"/>
+                            <field name="rabatt_u_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabatt_u', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="rabattreduktion" nolabel="1" string="Show Rabatt Reduktion"/>
+                                <field name="rabattreduktion_sep" nolabel="1"/>
+                            </div>
+                            <field name="rabattreduktion_label"  placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}"/>
+                            <field name="rabattreduktion_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('rabattreduktion', '=', False)]}"/>
+                            <div class="o_row" colspan="6">
+                                <field name="garantie" nolabel="1" string="Show Garantie"/>
+                                <field name="garantie_sep" nolabel="1 "/>
+                            </div>
+                            <field name="garantie_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>
+                            <field name="garantie_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie', '=', False)]}"/>                             
+                            <div class="o_row" colspan="6">
+                                <field name="garantie_wiederverkaufer" nolabel="1" string="Show Garantie Wiederverkäufer"/>
+                                <field name="garantie_wiederverkaufer_sep" nolabel="1"/>
+                            </div>
+                            <field name="garantie_wiederverkaufer_label" placeholder="Report label..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
+                            <field name="garantie_wiederverkaufer_text" placeholder="Report text..." colspan="8" nolabel ="1" attrs="{'invisible': [('garantie_wiederverkaufer', '=', False)]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="freier_text_block_id" string="Freier Text Block"/>
+                        <field name="freier_text" string="Freier Text"/>
+                    </group>
+                </page>
+            </xpath>
+            <xpath expr="//field[@name='x_studio_lieferfrist']" position="before">
+                <xpath expr="//field[@name='payment_term_id']" position="move"/>
+            </xpath>
+            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='product_id']" position="after">
+              <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='name']" position="move"/>
+              <field name="x_studio_farbe" string="Farbe"/>
+              <field name="x_studio_groesse" string="Grösse"/>
+            </xpath>
+            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
+              <xpath expr="//field[@name='product_template_id']" position="move"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+               <div class="o_row" colspan="6">
+                    <field name="x_studio_ausmessen_liefern_und_montieren" nolabel="1"/>
+                    <field name="ausmessen_liefern_und_montieren_text"/>
+                </div>
+                <div class="o_row" colspan="6">
+                    <field name="x_studio_reparieren_ersetzen_von" nolabel="1"/>
+                    <field name="reparieren_ersetzen_von_text"/>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='currency_id']" position="before">
+              <field name="x_studio_lieferadresse_drucken"/>
+              <field name="x_studio_rechnungsadresse_drucken"/>
+            </xpath>
+            
+        </field>
+    </record>
+    <!--Text block view starts here-->
+    <record id="base_baur_view_text_block_form" model="ir.ui.view">
+        <field name="name">base.baur.view.text.block.form</field>
+        <field name="model">text.blocks</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="text_block"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="base_baur_view_text_block_tree" model="ir.ui.view">
+        <field name="name">base.baur.view.text.block.form</field>
+        <field name="model">text.blocks</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="base_baur_view_text_block_action" model="ir.actions.act_window">
+        <field name="name">Free Text Blocks</field>
+        <field name="res_model">text.blocks</field>
+        <field name='view_mode'>tree,form</field>
+    </record>
+    <menuitem id="config_text_blocks_menu" name="Free Text Blocks" parent="sale.menu_sales_config" action="base_baur_view_text_block_action" sequence="5"/>
+    <record id="baur_account_move_form" model="ir.ui.view">
+        <field name="name">account.move.baur</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_payment_term_id']" position='attributes'>
+                 <attribute name='context'>{'example_date': invoice_date, 'invoice_id': id}</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_condition_text" model="ir.actions.server">
+        <field name="name">Add Condition Text</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">list</field>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                records.action_condition_text_add()
+        </field>
+    </record>
+</odoo>

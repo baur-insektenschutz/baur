@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name' : 'Scan your QR-Factures (QR-invoices) easily',
-    'version' : '1.0',
+    'version' : '17.0',
     'author' : 'nivels GmbH',
     'category' : 'Accounting',
     'website': 'https://www.nivels.ch',

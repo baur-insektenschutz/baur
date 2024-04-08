@@ -2,7 +2,7 @@
 # Powered by Mindphin Technologies.
 {
     'name': '(sd) Baur Provision',
-    'version': '1.0',
+    'version': '17.0',
     "summary": '',
     'description': """ """,
     "category": "Sales",
