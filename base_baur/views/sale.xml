@@ -154,8 +154,8 @@
                                 <field name="termin" nolabel="1"/>
                                 <field name="termin_sep" nolabel="1"/>
                             </div>
-                            <field name="termin_label" placeholder="Report label..." colspan="8" nolabel ="1" invisible="not termin"/>
-                            <field name="termin_text" placeholder="Report text..." colspan="8" nolabel ="1" invisible="not termin"/>
+                            <field name="termin_label" placeholder="Report label..." colspan="6" nolabel ="1" invisible="not termin"/>
+                            <field name="termin_text" placeholder="Report text..." colspan="6" nolabel ="1" invisible="not termin"/>
 
 
                             <div class="o_row" colspan="6">

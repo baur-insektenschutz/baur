@@ -6,6 +6,7 @@ from datetime import timedelta
 from odoo import fields, models, api
 from dateutil.relativedelta import relativedelta
 from odoo.tools import format_date, formatLang, frozendict
+from odoo.exceptions import ValidationError
 
 from odoo.tools import is_html_empty
 
@@ -549,13 +550,11 @@ class SaleOrderLine(models.Model):
 
     @api.onchange('product_id')
     def product_id_change(self):
-        res = super(SaleOrderLine, self).product_id_change()
         if self.product_id:
             if self.product_id.farbe:
                 self.x_studio_farbe = self.product_id.farbe
             if self.product_id.grosse:
                 self.x_studio_groesse = self.product_id.grosse
-        return res
 
 
 class AccountMove(models.Model):
