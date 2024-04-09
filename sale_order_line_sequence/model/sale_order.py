@@ -33,17 +33,10 @@ class SaleOrder(models.Model):
                     line.sequence2 = section_sequence
                 if line.display_type != 'line_section':
                     if line.section_id:
-                        line.sequence2 = line.section_id.sequence2+current_sequence
+                        line.sequence2 = line.section_id.sequence2 + current_sequence
                     else:
-                        line.sequence2 = section_sequence+current_sequence
+                        line.sequence2 = section_sequence + current_sequence
                     current_sequence += 1
-     
-    # def create(self, line_values):
-    #     seq=1000
-    #     for l in line_values['order_line']:
-    #         l[2]['sequence2'] = seq 
-    #         seq+=1
-    #     return super(SaleOrder, self).create(line_values)
 
     def write(self, line_values):
         res = super(SaleOrder, self).write(line_values)
@@ -55,6 +48,40 @@ class SaleOrder(models.Model):
             default
         )
 
+    def action_add_section_btn(self):
+        return {
+            'name': _('Add Section'),
+            'view_type': 'form',
+            "view_mode": 'form',
+            'res_model': 'add.section',
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+            'domain': [('display_type', '=', 'section')],
+            'context': {
+                'default_order_id': self.id,
+                'default_display_type': 'section',
+                'default_hide_display_type': True,
+                'default_seq': self.order_line and self.order_line[-1].sequence2 + 1 or 1000
+            }
+        }
+
+    def action_add_note_btn(self):
+        return {
+            'name': _('Add Section'),
+            'view_type': 'form',
+            "view_mode": 'form',
+            'res_model': 'add.section',
+            'type': 'ir.actions.act_window',
+            'target': 'new',
+            'domain': [('display_type', '=', 'note')],
+            'context': {
+                'default_order_id': self.id,
+                'default_display_type': 'note',
+                'default_hide_display_type': True,
+                'default_seq': self.order_line and self.order_line[-1].sequence2 + 1 or 1
+            }
+        }
+
 
 class AddSection(models.TransientModel):
     _name = 'add.section'
@@ -62,27 +89,40 @@ class AddSection(models.TransientModel):
 
     order_id = fields.Many2one("sale.order", string="Order")
     product_id = fields.Many2one("product.product", string="Product")
-    display_type = fields.Selection([('product','Product'),('section','Section'),('note','Note')], default="product")
+    display_type = fields.Selection([('product', 'Product'), ('section', 'Section'), ('note', 'Note')], default="product")
+    hide_display_type = fields.Boolean(string='Hide Display Type', default=False)
     section = fields.Char(string="Section")
     note = fields.Char(string="Note")
     seq = fields.Integer()
+    md_section_list = fields.Many2many("sale.order.line", "rel_sec_order", 'sec_id', 'line_id', string="Section List")
+
+    def default_get(self, fields_list):
+        res = super(AddSection, self).default_get(fields_list)
+        all_sections = self.env['sale.order.line'].search([
+            ('display_type', '=', 'line_section'), ('order_id', '=', self.env.context.get('active_id'))
+        ])
+        res['md_section_list'] = [(6, 0, all_sections.ids)]
+        return res
 
     def add_line(self):
         if self.env.context.get('active_id'):
             if self.display_type == 'product':
-                line = self.env['sale.order.line'].create({'product_id': self.product_id.id,'name':'aaa','order_id':self.order_id.id,'sequence2':self.seq})
-                line.product_id_change()
-                next_lines = self.env['sale.order.line'].search([('order_id','=',self.order_id.id),('sequence','>',self.seq),('sequence','<',self.seq+999)])
+                line = self.env['sale.order.line'].create({'product_id': self.product_id.id, 'name': self.product_id.name, 'order_id': self.order_id.id, 'sequence2': self.seq - 1})
+                line.order_id._reset_sequence()
+                next_lines = self.env['sale.order.line'].search([('order_id', '=', self.order_id.id), ('sequence', '>', self.seq), ('sequence', '<', self.seq + 999)])
                 for ll in next_lines:
-                    ll.sequence2 = self.seq+1
+                    ll.sequence2 = self.seq + 1
+                    ll.order_id._reset_sequence()
             if self.display_type == 'section':
-                line = self.env['sale.order.line'].create({'name':self.section,'order_id':self.order_id.id,'display_type':'line_section','sequence2':self.seq-1})
+                line = self.env['sale.order.line'].create({'name': self.section, 'order_id': self.order_id.id, 'display_type': 'line_section', 'sequence2': self.seq - 1})
+                line.order_id._reset_sequence()
             if self.display_type == 'note':
-                line = self.env['sale.order.line'].create({'name':self.note,'order_id':self.order_id.id,'display_type':'line_note','sequence2':self.seq-1})
+                line = self.env['sale.order.line'].create({'name': self.note, 'order_id': self.order_id.id, 'display_type': 'line_note', 'sequence2': self.seq - 1})
+                line.order_id._reset_sequence()
+
 
 class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
-
 
     # re-defines the field to change the default
     sequence = fields.Integer(
@@ -94,11 +134,11 @@ class SaleOrderLine(models.Model):
     # displays sequence on the order line
     sequence2 = fields.Integer(
         help="Shows the sequence of this line in the sale order.",
-        #related="sequence",
+        #  related="sequence",
         string="Line Number",
         default=0,
-        #readonly=False,
-        #store=True,
+        # readonly=False,
+        # store=True,
     )
     section_id = fields.Many2one('sale.order.line', string="Section")
 
@@ -118,6 +158,6 @@ class SaleOrderLine(models.Model):
             'res_model': 'add.section',
             'type': 'ir.actions.act_window',
             'target': 'new',
-            'domain':[('display_type', '=', 'line_section'), ('order_id', '=', self.order_id)],
-            'context': {'default_order_id': self.order_id.id,'default_seq':self.sequence2+1}
-        }        
+            'domain': [('display_type', '=', 'line_section'), ('order_id', '=', self.order_id)],
+            'context': {'default_order_id': self.order_id.id, 'default_seq': self.sequence2 + 1}
+        }
