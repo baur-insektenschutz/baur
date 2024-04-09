@@ -2,7 +2,7 @@
 <odoo>
     <template id="base_baur_report_invoice_document_inherit" inherit_id="account.report_invoice_document">
         <xpath expr="//div[@name='address_same_as_shipping']/../.." position="replace">
-                <div class="row address">
+                <div class="row address" style="margin-top:90px;">
                     <div class="col-4"><img class="img-fluid" src="/base_baur/static/description/icon.png" style="width:100px;"/></div>
                     <div class="col-4" style="line-height: 1.2;"><span>
                             <p><span style="font-weight:bold;">BAUR Insektenschutz AG</span><br/>Eichenweg 11<br/>3628 Uttigen<br/></p>

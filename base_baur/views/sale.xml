@@ -245,12 +245,12 @@
             <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='sequence']" position="after">
               <xpath expr="//field[@name='product_template_id']" position="move"/>
             </xpath>
-            <xpath expr="//field[@name='partner_shipping_id']" position="after">
-               <div class="o_row" colspan="6">
+            <xpath expr="//field[@name='sale_order_template_id']" position="after">
+               <div class="o_row" colspan="2">
                     <field name="x_studio_ausmessen_liefern_und_montieren" nolabel="1"/>
                     <field name="ausmessen_liefern_und_montieren_text"/>
                 </div>
-                <div class="o_row" colspan="6">
+                <div class="o_row"  colspan="2">
                     <field name="x_studio_reparieren_ersetzen_von" nolabel="1"/>
                     <field name="reparieren_ersetzen_von_text"/>
                 </div>

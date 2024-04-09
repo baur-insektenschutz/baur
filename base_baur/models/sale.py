@@ -30,7 +30,6 @@ class AccountPaymentTerm(models.Model):
     def _compute_example_invalid(self):
         for payment_term in self:
             payment_term.example_invalid = len(payment_term.line_ids.filtered(lambda l: l.value == 'balance')) != 1
-            print(".........ffffffffffffffffff...........", payment_term.example_invalid)
 
     # @api.depends('example_amount', 'example_date', 'line_ids.value', 'line_ids.value_amount')
     # def _compute_example_preview(self):
@@ -392,8 +391,8 @@ class SaleOrder(models.Model):
         #res = super(SaleOrder, self).onchange_sale_order_template_id()
 
         if not self.sale_order_template_id:
-            self.require_signature = self._get_default_require_signature()
-            self.require_payment = self._get_default_require_payment()
+            #self.require_signature = self.require_signature()
+            #self.require_payment = self._get_default_require_payment()
             return
 
         template = self.sale_order_template_id.with_context(lang=self.partner_id.lang)
